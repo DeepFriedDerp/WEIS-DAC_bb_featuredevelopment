@@ -1,0 +1,428 @@
+The system is: Darwin - 21.6.0 - x86_64
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" succeeded.
+Compiler: /opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran 
+Build flags: -march=core2;-mtune=haswell;-ftree-vectorize;-fPIC;-fstack-protector;-O2;-pipe;-isystem;/opt/anaconda3/envs/weis-env/include
+Id flags: -v 
+
+The output was:
+0
+Driving: /opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran -march=core2 -mtune=haswell -ftree-vectorize -fPIC -fstack-protector -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include -v CMakeFortranCompilerId.F --sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 -asm_macosx_version_min=10.9 -l gfortran -shared-libgcc
+Using built-in specs.
+COLLECT_GCC=/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran
+COLLECT_LTO_WRAPPER=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/lto-wrapper
+Target: x86_64-apple-darwin13.4.0
+Configured with: ../configure --prefix=/opt/anaconda3/envs/weis-env --build=x86_64-apple-darwin13.4.0 --host=x86_64-apple-darwin13.4.0 --target=x86_64-apple-darwin13.4.0 --with-libiconv-prefix=/opt/anaconda3/envs/weis-env --enable-languages=fortran --disable-multilib --enable-checking=release --disable-bootstrap --disable-libssp --with-gmp=/opt/anaconda3/envs/weis-env --with-mpfr=/opt/anaconda3/envs/weis-env --with-mpc=/opt/anaconda3/envs/weis-env --with-isl=/opt/anaconda3/envs/weis-env --enable-darwin-at-rpath --with-native-system-header-dir=/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include
+Thread model: posix
+gcc version 9.5.0 (GCC) 
+COLLECT_GCC_OPTIONS='-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fPIC' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-v' '-mmacosx-version-min=10.9'  '-shared-libgcc'
+ /opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/f951 CMakeFortranCompilerId.F -ffixed-form -cpp=/var/folders/c5/pckmh0894zv_8tbzlq4hbdph003hhf/T//ccJXfB8k.f90 -quiet -v -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -D__DYNAMIC__ -isystem /opt/anaconda3/envs/weis-env/include CMakeFortranCompilerId.F -fPIC -quiet -dumpbase CMakeFortranCompilerId.F -march=core2 -mtune=haswell -mmacosx-version-min=10.9 -auxbase CMakeFortranCompilerId -O2 -version -ftree-vectorize -fPIC -fstack-protector -fintrinsic-modules-path /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude -o - |
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/as -arch x86_64 -v -force_cpusubtype_ALL -mmacosx-version-min=10.9 -o /var/folders/c5/pckmh0894zv_8tbzlq4hbdph003hhf/T//ccfN2Sm3.o
+GNU Fortran (GCC) version 9.5.0 (x86_64-apple-darwin13.4.0)
+	compiled by GNU C version Clang 14.0.4, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.22.1-IMath-32
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+ignoring nonexistent directory "/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../../x86_64-apple-darwin13.4.0/include"
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include"
+ignoring duplicate directory "/opt/anaconda3/envs/weis-env/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include
+ /opt/anaconda3/envs/weis-env/include
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include-fixed
+End of search list.
+GNU Fortran2008 (GCC) version 9.5.0 (x86_64-apple-darwin13.4.0)
+	compiled by GNU C version Clang 14.0.4, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.22.1-IMath-32
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+clang version 13.0.1
+Target: x86_64-apple-darwin21.6.0
+Thread model: posix
+InstalledDir: /opt/anaconda3/envs/weis-env/bin
+ (in-process)
+ "/opt/anaconda3/envs/weis-env/bin/clang-13" -cc1as -triple x86_64-apple-macosx10.9.0 -filetype obj -main-file-name - -target-cpu core2 -fdebug-compilation-dir=/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/3.24.2/CompilerIdFortran -dwarf-debug-producer "clang version 13.0.1" -dwarf-version=2 -mrelocation-model pic --mrelax-relocations -o /var/folders/c5/pckmh0894zv_8tbzlq4hbdph003hhf/T//ccfN2Sm3.o -
+Reading specs from /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/libgfortran.spec
+rename spec lib to liborig
+COLLECT_GCC_OPTIONS='-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fPIC' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-v' '-mmacosx-version-min=10.9'  '-shared-libgcc'
+COMPILER_PATH=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/
+LIBRARY_PATH=/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../
+COLLECT_GCC_OPTIONS='-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fPIC' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-v' '-mmacosx-version-min=10.9'  '-shared-libgcc'
+ /opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/collect2 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/ -dynamic -arch x86_64 -macosx_version_min 10.9 -weak_reference_mismatches non-weak -o a.out -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0 -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../.. /var/folders/c5/pckmh0894zv_8tbzlq4hbdph003hhf/T//ccfN2Sm3.o -lgfortran -lSystem -lgcc_ext.10.5 -lgcc -lquadmath -lm -lgcc_ext.10.5 -lgcc -lSystem -rpath /opt/anaconda3/envs/weis-env/lib -no_compact_unwind -v
+collect2 version 9.5.0
+/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/ld -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/ -dynamic -arch x86_64 -macosx_version_min 10.9 -weak_reference_mismatches non-weak -o a.out -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0 -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../.. /var/folders/c5/pckmh0894zv_8tbzlq4hbdph003hhf/T//ccfN2Sm3.o -lgfortran -lSystem -lgcc_ext.10.5 -lgcc -lquadmath -lm -lgcc_ext.10.5 -lgcc -lSystem -rpath /opt/anaconda3/envs/weis-env/lib -no_compact_unwind -v
+@(#)PROGRAM:ld  PROJECT:ld64-609
+BUILD 21:56:10 May 21 2022
+configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0
+	/opt/anaconda3/envs/weis-env/lib
+	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+Framework search paths:
+	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
+
+
+Compilation of the Fortran compiler identification source "CMakeFortranCompilerId.F" produced "a.out"
+
+The Fortran compiler identification is GNU, found in "/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/3.24.2/CompilerIdFortran/a.out"
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-clang 
+Build flags: -march=core2;-mtune=haswell;-mssse3;-ftree-vectorize;-fPIC;-fPIE;-fstack-protector-strong;-O2;-pipe;-isystem;/opt/anaconda3/envs/weis-env/include
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is Clang, found in "/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/3.24.2/CompilerIdC/a.out"
+
+Detecting Fortran compiler ABI info compiled with the following output:
+Change Dir: /Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/anaconda3/envs/weis-env/bin/make -f Makefile cmTC_e9382/fast && /opt/anaconda3/envs/weis-env/bin/make  -f CMakeFiles/cmTC_e9382.dir/build.make CMakeFiles/cmTC_e9382.dir/build
+make[1]: Entering directory '/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp'
+Building Fortran object CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o
+/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran   -march=core2 -mtune=haswell -ftree-vectorize -fPIC -fstack-protector -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 -fPIE   -v -Wl,-v -c /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeFortranCompilerABI.F90 -o CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o
+Using built-in specs.
+COLLECT_GCC=/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran
+Target: x86_64-apple-darwin13.4.0
+Configured with: ../configure --prefix=/opt/anaconda3/envs/weis-env --build=x86_64-apple-darwin13.4.0 --host=x86_64-apple-darwin13.4.0 --target=x86_64-apple-darwin13.4.0 --with-libiconv-prefix=/opt/anaconda3/envs/weis-env --enable-languages=fortran --disable-multilib --enable-checking=release --disable-bootstrap --disable-libssp --with-gmp=/opt/anaconda3/envs/weis-env --with-mpfr=/opt/anaconda3/envs/weis-env --with-mpc=/opt/anaconda3/envs/weis-env --with-isl=/opt/anaconda3/envs/weis-env --enable-darwin-at-rpath --with-native-system-header-dir=/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include
+Thread model: posix
+gcc version 9.5.0 (GCC) 
+COLLECT_GCC_OPTIONS='-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-fPIE' '-v' '-c' '-o' 'CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o' '-mmacosx-version-min=10.9' 
+ /opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/f951 /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeFortranCompilerABI.F90 -cpp=/var/folders/c5/pckmh0894zv_8tbzlq4hbdph003hhf/T//cco585bs.f90 -quiet -v -D__DYNAMIC__ -isystem /opt/anaconda3/envs/weis-env/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeFortranCompilerABI.F90 -fPIC -quiet -dumpbase CMakeFortranCompilerABI.F90 -march=core2 -mtune=haswell -mmacosx-version-min=10.9 -auxbase-strip CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -O2 -version -ftree-vectorize -fstack-protector -fPIE -fintrinsic-modules-path /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude -o - |
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/as -arch x86_64 -v -force_cpusubtype_ALL -mmacosx-version-min=10.9 -o CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o
+GNU Fortran (GCC) version 9.5.0 (x86_64-apple-darwin13.4.0)
+	compiled by GNU C version Clang 14.0.4, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.22.1-IMath-32
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+ignoring nonexistent directory "/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../../x86_64-apple-darwin13.4.0/include"
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include"
+ignoring duplicate directory "/opt/anaconda3/envs/weis-env/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include
+ /opt/anaconda3/envs/weis-env/include
+ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include-fixed
+End of search list.
+GNU Fortran2008 (GCC) version 9.5.0 (x86_64-apple-darwin13.4.0)
+	compiled by GNU C version Clang 14.0.4, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.22.1-IMath-32
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+clang version 13.0.1
+Target: x86_64-apple-darwin21.6.0
+Thread model: posix
+InstalledDir: /opt/anaconda3/envs/weis-env/bin
+ (in-process)
+ "/opt/anaconda3/envs/weis-env/bin/clang-13" -cc1as -triple x86_64-apple-macosx10.9.0 -filetype obj -main-file-name - -target-cpu core2 -fdebug-compilation-dir=/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp -dwarf-debug-producer "clang version 13.0.1" -dwarf-version=2 -mrelocation-model pic --mrelax-relocations -o CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -
+COMPILER_PATH=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/
+LIBRARY_PATH=/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../
+COLLECT_GCC_OPTIONS='-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-fPIE' '-v' '-c' '-o' 'CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o' '-mmacosx-version-min=10.9' 
+Linking Fortran executable cmTC_e9382
+/opt/anaconda3/envs/weis-env/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9382.dir/link.txt --verbose=1
+/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib -v -Wl,-v -march=core2 -mtune=haswell -ftree-vectorize -fPIC -fstack-protector -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -o cmTC_e9382 
+Driving: /opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib -v -Wl,-v -march=core2 -mtune=haswell -ftree-vectorize -fPIC -fstack-protector -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -o cmTC_e9382 -mmacosx-version-min=10.9 -asm_macosx_version_min=10.9 -l gfortran -shared-libgcc
+Using built-in specs.
+COLLECT_GCC=/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran
+COLLECT_LTO_WRAPPER=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/lto-wrapper
+Target: x86_64-apple-darwin13.4.0
+Configured with: ../configure --prefix=/opt/anaconda3/envs/weis-env --build=x86_64-apple-darwin13.4.0 --host=x86_64-apple-darwin13.4.0 --target=x86_64-apple-darwin13.4.0 --with-libiconv-prefix=/opt/anaconda3/envs/weis-env --enable-languages=fortran --disable-multilib --enable-checking=release --disable-bootstrap --disable-libssp --with-gmp=/opt/anaconda3/envs/weis-env --with-mpfr=/opt/anaconda3/envs/weis-env --with-mpc=/opt/anaconda3/envs/weis-env --with-isl=/opt/anaconda3/envs/weis-env --enable-darwin-at-rpath --with-native-system-header-dir=/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include
+Thread model: posix
+gcc version 9.5.0 (GCC) 
+Reading specs from /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/libgfortran.spec
+rename spec lib to liborig
+COLLECT_GCC_OPTIONS='-L/opt/anaconda3/envs/weis-env/lib' '-v' '-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fPIC' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-o' 'cmTC_e9382' '-mmacosx-version-min=10.9' '-asm_macosx_version_min=10.9' '-shared-libgcc'
+COMPILER_PATH=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/
+LIBRARY_PATH=/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../
+COLLECT_GCC_OPTIONS='-L/opt/anaconda3/envs/weis-env/lib' '-v' '-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fPIC' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-o' 'cmTC_e9382' '-mmacosx-version-min=10.9' '-asm_macosx_version_min=10.9' '-shared-libgcc'
+ /opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.9 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -weak_reference_mismatches non-weak -o cmTC_e9382 -L/opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0 -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../.. -pie -headerpad_max_install_names -dead_strip_dylibs -rpath /opt/anaconda3/envs/weis-env/lib -v CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -lgfortran -lSystem -lgcc_ext.10.5 -lgcc -lquadmath -lm -lgcc_ext.10.5 -lgcc -lSystem -rpath /opt/anaconda3/envs/weis-env/lib -no_compact_unwind -v
+collect2 version 9.5.0
+/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/ld -dynamic -arch x86_64 -macosx_version_min 10.9 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -weak_reference_mismatches non-weak -o cmTC_e9382 -L/opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0 -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../.. -pie -headerpad_max_install_names -dead_strip_dylibs -rpath /opt/anaconda3/envs/weis-env/lib -v CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -lgfortran -lSystem -lgcc_ext.10.5 -lgcc -lquadmath -lm -lgcc_ext.10.5 -lgcc -lSystem -rpath /opt/anaconda3/envs/weis-env/lib -no_compact_unwind -v
+@(#)PROGRAM:ld  PROJECT:ld64-609
+BUILD 21:56:10 May 21 2022
+configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+@(#)PROGRAM:ld  PROJECT:ld64-609
+BUILD 21:56:10 May 21 2022
+configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/opt/anaconda3/envs/weis-env/lib
+	/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0
+	/opt/anaconda3/envs/weis-env/lib
+	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+Framework search paths:
+	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
+make[1]: Leaving directory '/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp'
+
+
+
+Parsed Fortran implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude]
+    add: [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include]
+    add: [/opt/anaconda3/envs/weis-env/include]
+    add: [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include-fixed]
+  end of search list found
+  collapse include dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude] ==> [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude]
+  collapse include dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include] ==> [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include]
+  collapse include dir [/opt/anaconda3/envs/weis-env/include] ==> [/opt/anaconda3/envs/weis-env/include]
+  collapse include dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include-fixed] ==> [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include-fixed]
+  implicit include dirs: [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude;/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include;/opt/anaconda3/envs/weis-env/include;/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include-fixed]
+
+
+Parsed Fortran implicit link information from above output:
+  link line regex: [^( *|.*[/\])(x86_64-apple-darwin13\.4\.0-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/opt/anaconda3/envs/weis-env/bin/make -f Makefile cmTC_e9382/fast && /opt/anaconda3/envs/weis-env/bin/make  -f CMakeFiles/cmTC_e9382.dir/build.make CMakeFiles/cmTC_e9382.dir/build]
+  ignore line: [make[1]: Entering directory '/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp']
+  ignore line: [Building Fortran object CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o]
+  ignore line: [/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran   -march=core2 -mtune=haswell -ftree-vectorize -fPIC -fstack-protector -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 -fPIE   -v -Wl -v -c /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeFortranCompilerABI.F90 -o CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran]
+  ignore line: [Target: x86_64-apple-darwin13.4.0]
+  ignore line: [Configured with: ../configure --prefix=/opt/anaconda3/envs/weis-env --build=x86_64-apple-darwin13.4.0 --host=x86_64-apple-darwin13.4.0 --target=x86_64-apple-darwin13.4.0 --with-libiconv-prefix=/opt/anaconda3/envs/weis-env --enable-languages=fortran --disable-multilib --enable-checking=release --disable-bootstrap --disable-libssp --with-gmp=/opt/anaconda3/envs/weis-env --with-mpfr=/opt/anaconda3/envs/weis-env --with-mpc=/opt/anaconda3/envs/weis-env --with-isl=/opt/anaconda3/envs/weis-env --enable-darwin-at-rpath --with-native-system-header-dir=/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 9.5.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-fPIE' '-v' '-c' '-o' 'CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o' '-mmacosx-version-min=10.9' ]
+  ignore line: [ /opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/f951 /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeFortranCompilerABI.F90 -cpp=/var/folders/c5/pckmh0894zv_8tbzlq4hbdph003hhf/T//cco585bs.f90 -quiet -v -D__DYNAMIC__ -isystem /opt/anaconda3/envs/weis-env/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeFortranCompilerABI.F90 -fPIC -quiet -dumpbase CMakeFortranCompilerABI.F90 -march=core2 -mtune=haswell -mmacosx-version-min=10.9 -auxbase-strip CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -O2 -version -ftree-vectorize -fstack-protector -fPIE -fintrinsic-modules-path /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude -o - |]
+  ignore line: [ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/as -arch x86_64 -v -force_cpusubtype_ALL -mmacosx-version-min=10.9 -o CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o]
+  ignore line: [GNU Fortran (GCC) version 9.5.0 (x86_64-apple-darwin13.4.0)]
+  ignore line: [	compiled by GNU C version Clang 14.0.4  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.22.1-IMath-32]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
+  ignore line: [ignoring nonexistent directory "/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../../x86_64-apple-darwin13.4.0/include"]
+  ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include"]
+  ignore line: [ignoring duplicate directory "/opt/anaconda3/envs/weis-env/include"]
+  ignore line: [  as it is a non-system directory that duplicates a system directory]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/finclude]
+  ignore line: [ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include]
+  ignore line: [ /opt/anaconda3/envs/weis-env/include]
+  ignore line: [ /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/include-fixed]
+  ignore line: [End of search list.]
+  ignore line: [GNU Fortran2008 (GCC) version 9.5.0 (x86_64-apple-darwin13.4.0)]
+  ignore line: [	compiled by GNU C version Clang 14.0.4  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.22.1-IMath-32]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [clang version 13.0.1]
+  ignore line: [Target: x86_64-apple-darwin21.6.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /opt/anaconda3/envs/weis-env/bin]
+  ignore line: [ (in-process)]
+  ignore line: [ "/opt/anaconda3/envs/weis-env/bin/clang-13" -cc1as -triple x86_64-apple-macosx10.9.0 -filetype obj -main-file-name - -target-cpu core2 -fdebug-compilation-dir=/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp -dwarf-debug-producer "clang version 13.0.1" -dwarf-version=2 -mrelocation-model pic --mrelax-relocations -o CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -]
+  ignore line: [COMPILER_PATH=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/]
+  ignore line: [LIBRARY_PATH=/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-fPIE' '-v' '-c' '-o' 'CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o' '-mmacosx-version-min=10.9' ]
+  ignore line: [Linking Fortran executable cmTC_e9382]
+  ignore line: [/opt/anaconda3/envs/weis-env/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9382.dir/link.txt --verbose=1]
+  ignore line: [/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran -Wl -pie -Wl -headerpad_max_install_names -Wl -dead_strip_dylibs -Wl -rpath /opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib -v -Wl -v -march=core2 -mtune=haswell -ftree-vectorize -fPIC -fstack-protector -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -o cmTC_e9382 ]
+  ignore line: [Driving: /opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran -Wl -pie -Wl -headerpad_max_install_names -Wl -dead_strip_dylibs -Wl -rpath /opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib -v -Wl -v -march=core2 -mtune=haswell -ftree-vectorize -fPIC -fstack-protector -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -o cmTC_e9382 -mmacosx-version-min=10.9 -asm_macosx_version_min=10.9 -l gfortran -shared-libgcc]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-gfortran]
+  ignore line: [COLLECT_LTO_WRAPPER=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/lto-wrapper]
+  ignore line: [Target: x86_64-apple-darwin13.4.0]
+  ignore line: [Configured with: ../configure --prefix=/opt/anaconda3/envs/weis-env --build=x86_64-apple-darwin13.4.0 --host=x86_64-apple-darwin13.4.0 --target=x86_64-apple-darwin13.4.0 --with-libiconv-prefix=/opt/anaconda3/envs/weis-env --enable-languages=fortran --disable-multilib --enable-checking=release --disable-bootstrap --disable-libssp --with-gmp=/opt/anaconda3/envs/weis-env --with-mpfr=/opt/anaconda3/envs/weis-env --with-mpc=/opt/anaconda3/envs/weis-env --with-isl=/opt/anaconda3/envs/weis-env --enable-darwin-at-rpath --with-native-system-header-dir=/Applications/Xcode_13.2.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 9.5.0 (GCC) ]
+  ignore line: [Reading specs from /opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/libgfortran.spec]
+  ignore line: [rename spec lib to liborig]
+  ignore line: [COLLECT_GCC_OPTIONS='-L/opt/anaconda3/envs/weis-env/lib' '-v' '-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fPIC' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-o' 'cmTC_e9382' '-mmacosx-version-min=10.9' '-asm_macosx_version_min=10.9' '-shared-libgcc']
+  ignore line: [COMPILER_PATH=/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/]
+  ignore line: [LIBRARY_PATH=/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/:/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../../]
+  ignore line: [COLLECT_GCC_OPTIONS='-L/opt/anaconda3/envs/weis-env/lib' '-v' '-march=core2' '-mtune=haswell' '-ftree-vectorize' '-fPIC' '-fstack-protector' '-O2' '-pipe' '-isystem' '/opt/anaconda3/envs/weis-env/include' '-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk' '-o' 'cmTC_e9382' '-mmacosx-version-min=10.9' '-asm_macosx_version_min=10.9' '-shared-libgcc']
+  link line: [ /opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/collect2 -dynamic -arch x86_64 -macosx_version_min 10.9 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -weak_reference_mismatches non-weak -o cmTC_e9382 -L/opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0 -L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../.. -pie -headerpad_max_install_names -dead_strip_dylibs -rpath /opt/anaconda3/envs/weis-env/lib -v CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o -lgfortran -lSystem -lgcc_ext.10.5 -lgcc -lquadmath -lm -lgcc_ext.10.5 -lgcc -lSystem -rpath /opt/anaconda3/envs/weis-env/lib -no_compact_unwind -v]
+    arg [/opt/anaconda3/envs/weis-env/libexec/gcc/x86_64-apple-darwin13.4.0/9.5.0/collect2] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.9] ==> ignore
+    arg [-syslibroot] ==> ignore
+    arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
+    arg [-weak_reference_mismatches] ==> ignore
+    arg [non-weak] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_e9382] ==> ignore
+    arg [-L/opt/anaconda3/envs/weis-env/lib] ==> dir [/opt/anaconda3/envs/weis-env/lib]
+    arg [-L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0] ==> dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0]
+    arg [-L/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../..] ==> dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../..]
+    arg [-pie] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-dead_strip_dylibs] ==> ignore
+    arg [-rpath] ==> ignore
+    arg [/opt/anaconda3/envs/weis-env/lib] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_e9382.dir/CMakeFortranCompilerABI.F90.o] ==> ignore
+    arg [-lgfortran] ==> lib [gfortran]
+    arg [-lSystem] ==> lib [System]
+    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lquadmath] ==> lib [quadmath]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lSystem] ==> lib [System]
+    arg [-rpath] ==> ignore
+    arg [/opt/anaconda3/envs/weis-env/lib] ==> ignore
+    arg [-no_compact_unwind] ==> ignore
+    arg [-v] ==> ignore
+  Library search paths: [;/opt/anaconda3/envs/weis-env/lib;/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0;/opt/anaconda3/envs/weis-env/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+  Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [System]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib] ==> [/opt/anaconda3/envs/weis-env/lib]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0] ==> [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0/../../..] ==> [/opt/anaconda3/envs/weis-env/lib]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib] ==> [/opt/anaconda3/envs/weis-env/lib]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0] ==> [/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib] ==> [/opt/anaconda3/envs/weis-env/lib]
+  collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+  collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+  implicit libs: [gfortran;gcc_ext.10.5;gcc;quadmath;m;gcc_ext.10.5;gcc]
+  implicit objs: []
+  implicit dirs: [/opt/anaconda3/envs/weis-env/lib;/opt/anaconda3/envs/weis-env/lib/gcc/x86_64-apple-darwin13.4.0/9.5.0;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+  implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/anaconda3/envs/weis-env/bin/make -f Makefile cmTC_a2d95/fast && /opt/anaconda3/envs/weis-env/bin/make  -f CMakeFiles/cmTC_a2d95.dir/build.make CMakeFiles/cmTC_a2d95.dir/build
+make[1]: Entering directory '/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o
+/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-clang   -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 -fPIE   -v -Wl,-v -MD -MT CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -c /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeCCompilerABI.c
+clang version 13.0.1
+Target: x86_64-apple-darwin13.4.0
+Thread model: posix
+InstalledDir: /opt/anaconda3/envs/weis-env/bin
+clang-13: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+ (in-process)
+ "/opt/anaconda3/envs/weis-env/bin/clang-13" -cc1 -triple x86_64-apple-macosx10.9.0 -Wundef-prefix=TARGET_OS_OSX -Werror=undef-prefix -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj --mrelax-relocations -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-rounding-math -munwind-tables -faligned-alloc-unavailable -target-sdk-version=12.3 -fcompatibility-qualified-id-block-type-checking -fvisibility-inlines-hidden-static-local-var -target-cpu core2 -target-feature +ssse3 -tune-cpu haswell -debugger-tuning=lldb -target-linker-version 609 -v -fcoverage-compilation-dir=/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp -resource-dir /opt/anaconda3/envs/weis-env/lib/clang/13.0.1 -dependency-file CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -sys-header-deps -isystem /opt/anaconda3/envs/weis-env/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -O2 -fdebug-compilation-dir=/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -vectorize-loops -vectorize-slp -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -x c /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeCCompilerABI.c
+clang -cc1 version 13.0.1 based upon LLVM 13.0.1 default target x86_64-apple-darwin21.6.0
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/anaconda3/envs/weis-env/include
+ /opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include
+ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+End of search list.
+Linking C executable cmTC_a2d95
+/opt/anaconda3/envs/weis-env/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2d95.dir/link.txt --verbose=1
+/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-clang -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib -v -Wl,-v CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -o cmTC_a2d95 
+clang version 13.0.1
+Target: x86_64-apple-darwin13.4.0
+Thread model: posix
+InstalledDir: /opt/anaconda3/envs/weis-env/bin
+ "/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-ld" -demangle -lto_library /opt/anaconda3/envs/weis-env/lib/libLTO.13.dylib -dynamic -arch x86_64 -platform_version macos 10.9.0 12.3 -pie -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_a2d95 -L/opt/anaconda3/envs/weis-env/lib -search_paths_first -headerpad_max_install_names -pie -headerpad_max_install_names -dead_strip_dylibs -rpath /opt/anaconda3/envs/weis-env/lib -v CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -lSystem /opt/anaconda3/envs/weis-env/lib/clang/13.0.1/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-609
+BUILD 21:56:10 May 21 2022
+configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/opt/anaconda3/envs/weis-env/lib
+	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+Framework search paths:
+	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
+make[1]: Leaving directory '/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/opt/anaconda3/envs/weis-env/include]
+    add: [/opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include]
+    add: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+  end of search list found
+  collapse include dir [/opt/anaconda3/envs/weis-env/include] ==> [/opt/anaconda3/envs/weis-env/include]
+  collapse include dir [/opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include] ==> [/opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include]
+  collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+  implicit include dirs: [/opt/anaconda3/envs/weis-env/include;/opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(x86_64-apple-darwin13\.4\.0-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/opt/anaconda3/envs/weis-env/bin/make -f Makefile cmTC_a2d95/fast && /opt/anaconda3/envs/weis-env/bin/make  -f CMakeFiles/cmTC_a2d95.dir/build.make CMakeFiles/cmTC_a2d95.dir/build]
+  ignore line: [make[1]: Entering directory '/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-clang   -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 -fPIE   -v -Wl -v -MD -MT CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -c /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang version 13.0.1]
+  ignore line: [Target: x86_64-apple-darwin13.4.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /opt/anaconda3/envs/weis-env/bin]
+  ignore line: [clang-13: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+  ignore line: [ (in-process)]
+  ignore line: [ "/opt/anaconda3/envs/weis-env/bin/clang-13" -cc1 -triple x86_64-apple-macosx10.9.0 -Wundef-prefix=TARGET_OS_OSX -Werror=undef-prefix -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -emit-obj --mrelax-relocations -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-rounding-math -munwind-tables -faligned-alloc-unavailable -target-sdk-version=12.3 -fcompatibility-qualified-id-block-type-checking -fvisibility-inlines-hidden-static-local-var -target-cpu core2 -target-feature +ssse3 -tune-cpu haswell -debugger-tuning=lldb -target-linker-version 609 -v -fcoverage-compilation-dir=/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp -resource-dir /opt/anaconda3/envs/weis-env/lib/clang/13.0.1 -dependency-file CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -sys-header-deps -isystem /opt/anaconda3/envs/weis-env/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -O2 -fdebug-compilation-dir=/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -vectorize-loops -vectorize-slp -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -x c /opt/anaconda3/envs/weis-env/share/cmake-3.24/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang -cc1 version 13.0.1 based upon LLVM 13.0.1 default target x86_64-apple-darwin21.6.0]
+  ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
+  ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /opt/anaconda3/envs/weis-env/include]
+  ignore line: [ /opt/anaconda3/envs/weis-env/lib/clang/13.0.1/include]
+  ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+  ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+  ignore line: [End of search list.]
+  ignore line: [Linking C executable cmTC_a2d95]
+  ignore line: [/opt/anaconda3/envs/weis-env/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2d95.dir/link.txt --verbose=1]
+  ignore line: [/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-clang -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /opt/anaconda3/envs/weis-env/include  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.9 -Wl -search_paths_first -Wl -headerpad_max_install_names -Wl -pie -Wl -headerpad_max_install_names -Wl -dead_strip_dylibs -Wl -rpath /opt/anaconda3/envs/weis-env/lib -L/opt/anaconda3/envs/weis-env/lib -v -Wl -v CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -o cmTC_a2d95 ]
+  ignore line: [clang version 13.0.1]
+  ignore line: [Target: x86_64-apple-darwin13.4.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /opt/anaconda3/envs/weis-env/bin]
+  link line: [ "/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-ld" -demangle -lto_library /opt/anaconda3/envs/weis-env/lib/libLTO.13.dylib -dynamic -arch x86_64 -platform_version macos 10.9.0 12.3 -pie -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_a2d95 -L/opt/anaconda3/envs/weis-env/lib -search_paths_first -headerpad_max_install_names -pie -headerpad_max_install_names -dead_strip_dylibs -rpath /opt/anaconda3/envs/weis-env/lib -v CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o -lSystem /opt/anaconda3/envs/weis-env/lib/clang/13.0.1/lib/darwin/libclang_rt.osx.a]
+    arg [/opt/anaconda3/envs/weis-env/bin/x86_64-apple-darwin13.4.0-ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-lto_library] ==> ignore, skip following value
+    arg [/opt/anaconda3/envs/weis-env/lib/libLTO.13.dylib] ==> skip value of -lto_library
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-platform_version] ==> ignore
+    arg [macos] ==> ignore
+    arg [10.9.0] ==> ignore
+    arg [12.3] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-syslibroot] ==> ignore
+    arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_a2d95] ==> ignore
+    arg [-L/opt/anaconda3/envs/weis-env/lib] ==> dir [/opt/anaconda3/envs/weis-env/lib]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-dead_strip_dylibs] ==> ignore
+    arg [-rpath] ==> ignore
+    arg [/opt/anaconda3/envs/weis-env/lib] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_a2d95.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/opt/anaconda3/envs/weis-env/lib/clang/13.0.1/lib/darwin/libclang_rt.osx.a] ==> lib [/opt/anaconda3/envs/weis-env/lib/clang/13.0.1/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/opt/anaconda3/envs/weis-env/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+  Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/opt/anaconda3/envs/weis-env/lib/clang/13.0.1/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib] ==> [/opt/anaconda3/envs/weis-env/lib]
+  collapse library dir [/opt/anaconda3/envs/weis-env/lib] ==> [/opt/anaconda3/envs/weis-env/lib]
+  collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+  collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+  implicit libs: []
+  implicit objs: []
+  implicit dirs: [/opt/anaconda3/envs/weis-env/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+  implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+
+

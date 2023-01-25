@@ -1,0 +1,28 @@
+# The fortran modules provided by this target.
+provides
+ conv_radiation.mod
+ conv_radiation_types.mod
+ current.mod
+ current_types.mod
+ hydrodyn.mod
+ hydrodyn_input.mod
+ hydrodyn_output.mod
+ hydrodyn_types.mod
+ morison.mod
+ morison_output.mod
+ morison_types.mod
+ ss_excitation.mod
+ ss_excitation_types.mod
+ ss_radiation.mod
+ ss_radiation_types.mod
+ userwaves.mod
+ wamit.mod
+ wamit2.mod
+ wamit2_types.mod
+ wamit_interp.mod
+ wamit_types.mod
+ waves.mod
+ waves2.mod
+ waves2_output.mod
+ waves2_types.mod
+ waves_types.mod

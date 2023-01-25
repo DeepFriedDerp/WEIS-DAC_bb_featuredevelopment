@@ -1,0 +1,18 @@
+# The fortran modules provided by this target.
+provides
+ modmesh.mod
+ modmesh_mapping.mod
+ modmesh_types.mod
+ nwtc_base.mod
+ nwtc_fftpack.mod
+ nwtc_io.mod
+ nwtc_lapack.mod
+ nwtc_library.mod
+ nwtc_library_types.mod
+ nwtc_num.mod
+ nwtc_randomnumber.mod
+ nwtc_scalapack.mod
+ nwtc_slatec.mod
+ precision.mod
+ ran_lux_mod.mod
+ syssubs.mod

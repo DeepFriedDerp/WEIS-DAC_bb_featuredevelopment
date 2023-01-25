@@ -1,0 +1,7 @@
+/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/discon.dir
+/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/edit_cache.dir
+/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/rebuild_cache.dir
+/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/list_install_components.dir
+/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/install.dir
+/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/install/local.dir
+/Users/agmotes/gitRepos/WEIS/build/temp.macosx-10.9-x86_64-cpython-310_rosco/CMakeFiles/install/strip.dir

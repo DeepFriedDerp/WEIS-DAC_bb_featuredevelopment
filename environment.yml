@@ -1,0 +1,72 @@
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - alabaster
+  - babel
+  - cmake>=3.21.1
+  - control
+  - coveralls
+  - cython
+  - dill
+  - docutils
+  - et-xmlfile
+  - future
+  - git
+  - gdown
+  - imagesize
+  - jinja2
+  - jsonmerge
+  - jsonschema
+  - make
+  - markupsafe
+  - matplotlib-base
+  - nlopt
+  - numpy
+  - numpydoc
+  - openmdao
+  - openpyxl
+  - osqp
+  - pandas
+  - patsy
+  - pip
+  - pygments
+  - pyoptsparse
+  - pyside2
+  - pytest
+  - pytest-cov
+  - python-benedict
+  - pyyaml
+  - pyzmq
+  - qdldl-python
+  - ruamel_yaml
+  - scipy
+  - seaborn
+  - setuptools<60.0
+  - simpy
+  - slycot
+  - smt
+  - snowballstemmer
+  - sortedcontainers
+  - sphinx
+  - sphinxcontrib-applehelp
+  - sphinxcontrib-devhelp
+  - sphinxcontrib-htmlhelp
+  - sphinxcontrib-jsmath
+  - sphinxcontrib-qthelp
+  - sphinxcontrib-serializinghtml
+  - statsmodels
+  - swig
+  - treon
+  - pyzmq
+#  - versioneer
+  - pip:
+    - fatpack
+    - marmot-agents
+# Needs to be done outside of environment file:
+#  - m2w64-toolchain # [win]
+#  - libpython # [win]
+#  - compilers # [not win]
+#  - petsc4py # [not win]
+#  - mpi4py # [not win]

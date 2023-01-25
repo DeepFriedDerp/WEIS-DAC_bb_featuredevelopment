@@ -1,0 +1,5 @@
+# The fortran modules provided by this target.
+provides
+ map.mod
+ map_fortran_types.mod
+ map_types.mod
