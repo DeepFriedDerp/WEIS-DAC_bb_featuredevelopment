@@ -1,9 +1,0 @@
-openmdao>=3.4
-numpy
-scipy
-nlopt
-dill
-smt
-control
-jsonmerge
-fatpack

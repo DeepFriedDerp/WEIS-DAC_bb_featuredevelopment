@@ -1,3 +1,0 @@
-# The fortran modules provided by this target.
-provides
- hydrodyn_c_binding.mod

@@ -1,4 +1,0 @@
-# The fortran modules provided by this target.
-provides
- inflowwind_driver_subs.mod
- inflowwind_driver_types.mod

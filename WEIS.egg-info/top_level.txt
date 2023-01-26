@@ -1,4 +1,0 @@
-RAFT
-openfast
-rosco
-weis

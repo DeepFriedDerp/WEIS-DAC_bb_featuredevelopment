@@ -1,9 +1,0 @@
-# The fortran modules provided by this target.
-provides
- aerodyn14.mod
- aerodyn14_types.mod
- aerogensubs.mod
- aerosubs.mod
- dwm.mod
- dwm_types.mod
- dwm_wake_sub.mod
