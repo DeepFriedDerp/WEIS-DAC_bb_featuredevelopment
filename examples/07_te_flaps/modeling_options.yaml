@@ -2,10 +2,10 @@ General:
     verbosity: False  # When set to True, the code prints to screen many infos
     openfast_configuration:
         OF_run_fst: BAR10
-      #  OF_run_dir: temp/BAR10_BangBang_01    # new flap mode results
+        OF_run_dir: temp/BAR10_BangBang_01    # new flap mode results
       #  OF_run_dir: temp/BAR10_1              # old flap mode results
       #  OF_run_dir: temp/BAR10_AlwaysOn         # Always on results (mode 4)
-        OF_run_dir: temp/BAR10_AlwaysOff         # Always off results (mode 4)
+        # OF_run_dir: temp/BAR10_AlwaysOff         # Always off results (mode 4)
 WISDEM:
     RotorSE:
         flag: True
@@ -67,7 +67,7 @@ Level3: # Options for WEIS fidelity level 3 = nonlinear time domain
         AfCmode: 5
 
     xfoil:
-        path: /Users/agmotes/home/codes/bin/xfoil
+        path: /home/mertzb/Xfoil/bin/xfoil
 
 ROSCO:
     flag: False
@@ -77,7 +77,7 @@ ROSCO:
     F_LPFType: 2
     F_NotchType: 0
     Fl_Mode: 0
-    Flp_Mode: 1
+    Flp_Mode: 4
     #flp_bb_threshold: 25000  #Gerrit always on
     #flp_bb_threshold: 99000000  #Gerrit always off
     flp_bb_threshold: 19000000 # attempting a temp switch

@@ -377,6 +377,18 @@ ControlParameters:
     Flp_MaxPit:
       <<: *real
       description: Maximum (and minimum) flap pitch angle [rad]
+    flp_bb_threshold: #Ben: I added these last 4 items
+      <<: *real
+      description: Threshold for flapwise root bending moment for bang-bang flap controller [N-m]
+    flp_bb_startDelay:
+      <<: *real
+      description: Time to begin allowing bang-bang flap controller in simulation [s]
+    flp_bb_depTime:
+      <<: *real
+      description: Time to manually deploy flaps [s]
+    flp_bb_useIDAC:
+      <<: *integer
+      description: Flag for bang-bang flap control?
     
     # Open-loop Control
     OL_Filename:

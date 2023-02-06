@@ -615,9 +615,9 @@ CONTAINS
             ENDIF
 
             ! Send to AVRSwap
-            avrSWAP(120) = LocalVar%Flp_Angle(1)   ! Send flap pitch command (deg)
-            avrSWAP(121) = LocalVar%Flp_Angle(2)   ! Send flap pitch command (deg)
-            avrSWAP(122) = LocalVar%Flp_Angle(3)   ! Send flap pitch command (deg)
+            avrSWAP(120) = LocalVar%Flp_Angle(1)*R2D   ! Send flap pitch command (deg)
+            avrSWAP(121) = LocalVar%Flp_Angle(2)*R2D   ! Send flap pitch command (deg)
+            avrSWAP(122) = LocalVar%Flp_Angle(3)*R2D   ! Send flap pitch command (deg)
             !PRINT *, 'avrSWAP vals =', avrSWAP(120), avrSWAP(121), avrSWAP(122)
         ELSE
             RETURN
