@@ -86,6 +86,7 @@ class Controller():
         self.WS_GS_n            = controller_params['WS_GS_n']
         self.PC_GS_n            = controller_params['PC_GS_n']
         self.flp_maxpit         = controller_params['flp_maxpit']
+        self.flp_bb_threshold   = controller_params['flp_bb_threshold']
         self.flp_bb_startDelay  = controller_params['flp_bb_startDelay']
         self.flp_bb_depTime     = controller_params['flp_bb_depTime']
         self.flp_bb_useIDAC     = controller_params['flp_bb_useIDAC']
@@ -103,13 +104,6 @@ class Controller():
             except:
                 raise Exception(
                     'ROSCO_toolbox:controller: flp_kp_norm and flp_tau must be set if Flp_Mode > 0')
-
-        if self.Flp_Mode == 4: # Gerrit
-            try:
-                self.flp_bb_threshold = controller_params['flp_bb_threshold']
-            except:
-                raise Exception(
-                    'Flp_Mode = 4 and rootMOOPF_Threshold not defined, please fix this in modeling options')
 
         if self.Fl_Mode > 0:
             try:
