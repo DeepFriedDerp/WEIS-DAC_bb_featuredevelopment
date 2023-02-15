@@ -87,6 +87,7 @@ class Controller():
         self.PC_GS_n            = controller_params['PC_GS_n']
         self.dac_maxval         = controller_params['dac_maxval']
         self.dac_bb_startDelay  = controller_params['dac_bb_startDelay']
+        #self.dac_bb_threshold   = controller_params['dac_bb_threshold']
         self.dac_bb_depTime     = controller_params['dac_bb_depTime']
         self.dac_bb_useIDAC     = controller_params['dac_bb_useIDAC']
         self.Kp_ipc1p           = controller_params['IPC_Kp1p']
