@@ -2,7 +2,7 @@ General:
     verbosity: False  # When set to True, the code prints to screen many infos
     openfast_configuration:
         OF_run_fst: BAR10
-        OF_run_dir: temp/BAR10_BangBang_01    # new flap mode results
+        OF_run_dir: temp/BAR10_BangBang_02    # new flap mode results
       #  OF_run_dir: temp/BAR10_1              # old flap mode results
       #  OF_run_dir: temp/BAR10_AlwaysOn         # Always on results (mode 4)
         # OF_run_dir: temp/BAR10_AlwaysOff         # Always off results (mode 4)
@@ -77,15 +77,16 @@ ROSCO:
     F_LPFType: 2
     F_NotchType: 0
     Fl_Mode: 0
-    Flp_Mode: 4
-    #flp_bb_threshold: 25000  #Gerrit always on
-    #flp_bb_threshold: 99000000  #Gerrit always off
-    flp_bb_threshold: 19000000 # attempting a temp switch
-    #flp_bb_startDelay: 1
-    flp_bb_depTime: 1
-    #flp_bb_useIDAC: 1
-    #Flp_MaxPit: 0.1745 # 10 degrees max flap angle
-    Flp_MaxPit: 0.7854 #Gerrit: 45 Degrees max flap angle
+    DAC_Mode: 4
+    DAC_Model: 1
+    #dac_bb_threshold: 25000  #Gerrit always on
+    #dac_bb_threshold: 99000000  #Gerrit always off
+    dac_bb_threshold: 19000000 # attempting a temp switch
+    #dac_bb_startDelay: 1
+    dac_bb_depTime: 1
+    #dac_bb_useIDAC: 1
+    #dac_maxval: 0.1745 # 10 degrees max flap angle
+    dac_maxval: 0.7854 #Gerrit: 45 Degrees max flap angle
     zeta_flp: 0.7
     omega_flp: 2.63
     zeta_pc: [1.2]

@@ -173,12 +173,12 @@ properties:
                 maximum: 2
                 default: 0
                 description: Floating specific feedback mode (0- no nacelle velocity feedback, 1 - nacelle velocity feedback, 2 - nacelle pitching acceleration feedback)
-            Flp_Mode:
+            DAC_Mode:
                 type: number
                 minimum: 0
                 maximum: 4 # Gerrit
                 default: 0
-                description: Flap control mode (0- no flap control, 1- steady state flap angle, 2- Proportional flap control)
+                description: DAC control mode (0- no DAC control, 1- steady state dac parameter value, 2- Proportional dac control, 3- Cyclic (1P) DAC control, 4- Bang-Bang DAC control)
             PwC_Mode:
                 type: number
                 minimum: 0
@@ -281,8 +281,8 @@ properties:
                 type: number
                 default: 0.6981
                 unit: rad
-            flp_maxpit:
-                description: Maximum (and minimum) flap pitch angle [rad]
+            dac_maxval:
+                description: Maximum (and minimum) DAC parameter value [units depend on device]
                 type: number
                 default: 0.1745
                 unit: rad
@@ -317,46 +317,46 @@ properties:
             zeta_flp:
                 type: number
                 minimum: 0
-                description: Flap controller desired damping ratio [-]
+                description: DAC controller desired damping ratio [-]
                 unit: none
             omega_flp:
                 type: number
                 minimum: 0
-                description: Flap controller desired natural frequency [rad/s]
+                description: DAC controller desired natural frequency [rad/s]
                 unit: rad/s
             flp_kp_norm:
                 type: number
                 minimum: 0
-                description: Flap controller normalization term for DC gain (kappa)
+                description: DAC controller normalization term for DC gain (kappa)
             flp_tau:
                 type: number
                 minimum: 0
-                description: Flap controller time constant for integral gain
+                description: DAC controller time constant for integral gain
                 unit: s
-            flp_bb_threshold: # Gerrit
+            dac_bb_threshold: # Gerrit
                 type: number
                 minimum: -99999999
                 maximum: 99999999
                 default: 0
-                description: The threshold value above which the TE flaps will be actuated in bang-bang mode (Flp_Mode = 4)
-            flp_bb_startDelay: # Gerrit
+                description: The threshold value above which the DAC devices will be actuated in bang-bang mode (DAC_Mode = 4)
+            dac_bb_startDelay: # Gerrit
                 type: number
                 minimum: 0
                 maximum: 1000000
                 default: 0
-                description: The number of seconds into the simulation when the DAC bang-bang controller actuates (Flp_Mode = 4)
-            flp_bb_depTime: # Gerrit
+                description: The number of seconds into the simulation when the DAC bang-bang controller actuates (DAC_Mode = 4)
+            dac_bb_depTime: # Gerrit
                 type: number
                 minimum: 0
                 maximum: 1000000
                 default: 0
-                description: The minimum number of seconds a DAC device will stay deployed once actuated (Flp_Mode = 4)
-            flp_bb_useIDAC: # Gerrit
+                description: The minimum number of seconds a DAC device will stay deployed once actuated (DAC_Mode = 4)
+            dac_bb_useIDAC: # Gerrit
                 type: number
                 minimum: 0
                 maximum: 1
                 default: 0
-                description: A flag used to determine whether to use IDAC or general DAC in bang-bang flap control mode (Flp_Mode =4)
+                description: A flag used to determine whether to use IDAC or general DAC in bang-bang DAC control mode (DAC_Mode =4)
             max_torque_factor:
                 type: number
                 minimum: 0
@@ -519,9 +519,9 @@ properties:
                     Fl_Mode:
                         type: number
                         description: Floating specific feedback mode (0- no nacelle velocity feedback, 1- feed back translational velocity, 2- feed back rotational veloicty)
-                    Flp_Mode:
+                    DAC_Mode:
                         type: number
-                        description: Flap control mode (0- no flap control, 1- steady state flap angle, 2- Proportional flap control)
+                        description: DAC control mode (0- no DAC control, 1- steady state DAC parameter value, 2- Proportional DAC control, 3-Cyclic (1P) DAC control, 4- Bang-Bang DAC control)
                     F_LPFCornerFreq:
                         type: number
                         description: Corner frequency (-3dB point) in the low-pass filters,
@@ -560,7 +560,7 @@ properties:
                         type: array
                         items:
                             type: number
-                        description: Corner frequency and damping in the second order low pass filter of the blade root bending moment for flap control
+                        description: Corner frequency and damping in the second order low pass filter of the blade root bending moment for DAC control
                         units: rad/s
                     PC_GS_n:
                         type: number
@@ -831,35 +831,35 @@ properties:
                         type: number
                         description: Nacelle velocity proportional feedback gain
                         units: s
-                    Flp_Angle:
+                    dac_param:
                         type: number
-                        description: Initial or steady state flap angle
+                        description: Initial or steady state DAC parameter value
                         units: rad
                     Flp_Kp:
                         type: number
-                        description: Blade root bending moment proportional gain for flap control
+                        description: Blade root bending moment proportional gain for DAC control
                         units: s
                     Flp_Ki:
                         type: number
-                        description: Flap displacement integral gain for flap control
-                    Flp_MaxPit:
+                        description: DAC displacement integral gain for DAC control
+                    dac_maxval:
                         type: number
-                        description: Maximum (and minimum) flap pitch angle
+                        description: Maximum (and minimum) DAC parameter value
                         units: rad
-                    flp_bb_threshold:  # Gerrit
+                    dac_bb_threshold:  # Gerrit
                         type: number
-                        description: The filtered root bending moment threshold for flap actuation in bang-bang flap control mode (Flp_Mode = 4)
-                    flp_bb_startDelay: #Gerrit
+                        description: The filtered root bending moment threshold for DAC actuation in bang-bang DAC control mode (DAC_Mode = 4)
+                    dac_bb_startDelay: #Gerrit
                         type: number
-                        description: The number of seconds after sim start time before the DAC bang-bang controller starts working in bang-bang flap control mode (Flp_Mode = 4)
+                        description: The number of seconds after sim start time before the DAC bang-bang controller starts working in bang-bang DAC control mode (DAC_Mode = 4)
                         units: s
-                    flp_bb_depTime: #Gerrit
+                    dac_bb_depTime: #Gerrit
                         type: number
-                        description: The minimum number of seconds a DAC device will deploy for once triggered in bang-bang flap control mode (Flp_Mode = 4)
+                        description: The minimum number of seconds a DAC device will deploy for once triggered in bang-bang DAC control mode (DAC_Mode = 4)
                         units: s
-                    flp_bb_useIDAC: #Gerrit
+                    dac_bb_useIDAC: #Gerrit
                         type: number
-                        description: A flag used to indicate individual DAC or general DAC should be implemented in bang-bang flap control mode (Flp_Mode = 4)
+                        description: A flag used to indicate individual DAC or general DAC should be implemented in bang-bang DAC control mode (DAC_Mode = 4)
                     OL_Filename:
                         type: string
                         description: Input file with open loop timeseries (absolute path or relative to this file)

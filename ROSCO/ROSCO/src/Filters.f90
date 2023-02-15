@@ -286,10 +286,10 @@ CONTAINS
 
         ! Blade root bending moment for IPC
         DO K = 1,LocalVar%NumBl
-            IF ((CntrPar%IPC_ControlMode > 0) .OR. (CntrPar%Flp_Mode == 3)) THEN
+            IF ((CntrPar%IPC_ControlMode > 0) .OR. (CntrPar%DAC_Mode == 3)) THEN
                 ! Moving inverted notch at rotor speed to isolate 1P
                 LocalVar%RootMOOPF(K) = NotchFilterSlopes(LocalVar%rootMOOP(K), LocalVar%DT, LocalVar%RotSpeedF, 0.7_DbKi, LocalVar%FP, LocalVar%iStatus, LocalVar%restart, objInst%instNotchSlopes, .TRUE.)
-            ELSEIF ( CntrPar%Flp_Mode == 2 ) THEN
+            ELSEIF ( CntrPar%DAC_Mode == 2 ) THEN
                 ! Filter Blade root bending moments
                 LocalVar%RootMOOPF(K) = SecLPFilter(LocalVar%rootMOOP(K),LocalVar%DT, CntrPar%F_FlpCornerFreq(1), CntrPar%F_FlpCornerFreq(2), LocalVar%FP, LocalVar%iStatus, LocalVar%restart,objInst%instSecLPF)
                 LocalVar%RootMOOPF(K) = NotchFilter(LocalVar%RootMOOPF(K), LocalVar%DT, CntrPar%F_NotchCornerFreq, CntrPar%F_NotchBetaNumDen(1), CntrPar%F_NotchBetaNumDen(2), LocalVar%FP, LocalVar%iStatus, LocalVar%restart, objInst%instNotch) 
