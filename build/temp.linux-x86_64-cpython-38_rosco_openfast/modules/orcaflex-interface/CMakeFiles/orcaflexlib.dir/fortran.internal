@@ -1,0 +1,5 @@
+# The fortran modules provided by this target.
+provides
+ orcaflexinterface.mod
+ orcaflexinterface_parameters.mod
+ orcaflexinterface_types.mod

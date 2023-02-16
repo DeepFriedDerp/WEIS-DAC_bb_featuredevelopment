@@ -1,0 +1,21 @@
+# The fortran modules provided by this target.
+provides
+ ifw_4dext.mod
+ ifw_4dext_types.mod
+ ifw_bladedffwind.mod
+ ifw_bladedffwind_types.mod
+ ifw_ffwind_base.mod
+ ifw_ffwind_base_types.mod
+ ifw_hawcwind.mod
+ ifw_hawcwind_types.mod
+ ifw_tsffwind.mod
+ ifw_tsffwind_types.mod
+ ifw_uniformwind.mod
+ ifw_uniformwind_types.mod
+ ifw_userwind.mod
+ ifw_userwind_types.mod
+ inflowwind.mod
+ inflowwind_subs.mod
+ inflowwind_types.mod
+ lidar.mod
+ lidar_types.mod

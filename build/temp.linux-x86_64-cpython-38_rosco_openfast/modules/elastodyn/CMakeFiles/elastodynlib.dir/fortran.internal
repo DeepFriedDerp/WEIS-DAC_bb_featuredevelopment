@@ -1,0 +1,8 @@
+# The fortran modules provided by this target.
+provides
+ ed_usersubs.mod
+ elastodyn.mod
+ elastodyn_allbldndouts_io.mod
+ elastodyn_io.mod
+ elastodyn_parameters.mod
+ elastodyn_types.mod

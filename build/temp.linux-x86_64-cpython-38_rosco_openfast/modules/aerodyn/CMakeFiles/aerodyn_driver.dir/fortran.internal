@@ -1,0 +1,4 @@
+# The fortran modules provided by this target.
+provides
+ aerodyn_driver_subs.mod
+ aerodyn_driver_types.mod

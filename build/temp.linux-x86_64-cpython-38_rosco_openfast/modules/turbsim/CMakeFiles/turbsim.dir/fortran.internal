@@ -1,0 +1,11 @@
+# The fortran modules provided by this target.
+provides
+ modifiedvkrm_mod.mod
+ newton_mod.mod
+ ts_cohstructures.mod
+ ts_fileio.mod
+ ts_profiles.mod
+ ts_randnum.mod
+ ts_velocityspectra.mod
+ tssubs.mod
+ turbsim_types.mod
