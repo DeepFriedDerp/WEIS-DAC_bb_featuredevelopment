@@ -2,7 +2,7 @@ General:
     verbosity: false
     openfast_configuration:
         OF_run_fst: BAR10
-        OF_run_dir: temp/BAR10_BangBang_lems_01
+        OF_run_dir: temp/BAR10_BangBang_flap_01
         generate_af_coords: false
         use_exe: false
         model_only: false
@@ -73,7 +73,7 @@ WISDEM:
         web_name: [fore_web, rear_web]
         n_dac: 1
         id_joint_position: ''
-        DAC_Type: 1
+        DAC_Type: 0
     TowerSE:
         flag: true
         wind: PowerWind
@@ -387,12 +387,12 @@ ROSCO:
     F_NotchType: 0
     Fl_Mode: 0
     DAC_Mode: 4
-    DAC_Model: 2
+    DAC_Model: 1
     dac_bb_threshold: 19000000
     dac_bb_depTime: 1
-    dac_maxval: 9.0
-    zeta_flp: 0.7
-    omega_flp: 2.63
+    dac_maxval: 0.17453292519943295
+    zeta_dac: 0.7
+    omega_dac: 2.63
     zeta_pc: [1.2]
     omega_pc: [0.1]
     U_pc: [12]
@@ -402,8 +402,8 @@ ROSCO:
     IPC_Kp1p: 0.0
     IPC_Ki1p: 0.0
     Bld_FlpDamp: 0.59696
-    flp_kp_norm: 0.8372297349345306
-    flp_tau: 12.258174215008605
+    dac_kp_norm: 0.8372297349345306
+    dac_tau: 12.258174215008605
     LoggingLevel: 1
     VS_ControlMode: 2
     PC_ControlMode: 1
@@ -497,7 +497,7 @@ Level1:
     heave_tol: 1
     save_designs: false
     runPyHAMS: true
-    BEM_dir: temp/BAR10_BangBang_lems_01/BEM
+    BEM_dir: temp/BAR10_BangBang_flap_01/BEM
 Level2:
     flag: false
     simulation: {flag: false, TMax: 720.0}

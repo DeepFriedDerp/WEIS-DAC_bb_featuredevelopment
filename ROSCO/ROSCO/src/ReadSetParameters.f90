@@ -261,7 +261,7 @@ CONTAINS
         CALL ParseInput(UnControllerParameters,CurLine,'F_YawErr',accINFILE(1),CntrPar%F_YawErr, ErrVar)
         CALL ParseAry(UnControllerParameters, CurLine, 'F_FlCornerFreq', CntrPar%F_FlCornerFreq, 2, accINFILE(1), ErrVar )
         CALL ParseInput(UnControllerParameters,CurLine,'F_FlHighPassFreq',accINFILE(1),CntrPar%F_FlHighPassFreq,ErrVar)
-        CALL ParseAry(UnControllerParameters, CurLine, 'F_FlpCornerFreq', CntrPar%F_FlpCornerFreq, 2, accINFILE(1), ErrVar )
+        CALL ParseAry(UnControllerParameters, CurLine, 'F_DACCornerFreq', CntrPar%F_DACCornerFreq, 2, accINFILE(1), ErrVar )
         CALL ReadEmptyLine(UnControllerParameters,CurLine)
 
         !----------- BLADE PITCH CONTROLLER CONSTANTS -----------
@@ -371,8 +371,8 @@ CONTAINS
         !------------ Flaps ------------
         CALL ReadEmptyLine(UnControllerParameters,CurLine)
         CALL ParseInput(UnControllerParameters,CurLine,'dac_param',accINFILE(1),CntrPar%dac_param,ErrVar)
-        CALL ParseInput(UnControllerParameters,CurLine,'Flp_Kp',accINFILE(1),CntrPar%Flp_Kp,ErrVar)
-        CALL ParseInput(UnControllerParameters,CurLine,'Flp_Ki',accINFILE(1),CntrPar%Flp_Ki,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'DAC_Kp',accINFILE(1),CntrPar%DAC_Kp,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'DAC_Ki',accINFILE(1),CntrPar%DAC_Ki,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'dac_maxval',accINFILE(1),CntrPar%dac_maxval,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_threshold',accINFILE(1),CntrPar%dac_bb_threshold,ErrVar) ! Gerrit
         CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_startDelay',accINFILE(1),CntrPar%dac_bb_startDelay,ErrVar) ! Gerrit
@@ -725,16 +725,16 @@ CONTAINS
         ENDIF
 
         IF (CntrPar%DAC_Mode > 0) THEN
-            ! F_FlpCornerFreq(1)  (frequency)
-            IF (CntrPar%F_FlpCornerFreq(1) <= 0.0) THEN
+            ! F_DACCornerFreq(1)  (frequency)
+            IF (CntrPar%F_DACCornerFreq(1) <= 0.0) THEN
                 ErrVar%aviFAIL = -1
-                ErrVar%ErrMsg  = 'F_FlpCornerFreq(1) must be greater than zero.'
+                ErrVar%ErrMsg  = 'F_DACCornerFreq(1) must be greater than zero.'
             ENDIF
 
-            ! F_FlpCornerFreq(2)  (damping)
-            IF (CntrPar%F_FlpCornerFreq(2) < 0.0) THEN
+            ! F_DACCornerFreq(2)  (damping)
+            IF (CntrPar%F_DACCornerFreq(2) < 0.0) THEN
                 ErrVar%aviFAIL = -1
-                ErrVar%ErrMsg  = 'F_FlpCornerFreq(2) must be greater than or equal to zero.'
+                ErrVar%ErrMsg  = 'F_DACCornerFreq(2) must be greater than or equal to zero.'
             ENDIF
         ENDIF
 

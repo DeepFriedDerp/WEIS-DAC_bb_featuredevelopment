@@ -17,10 +17,10 @@ def assign_ROSCO_values(wt_opt, modeling_options, opt_options):
     # DAC control params
     if rosco_init_options['DAC_Mode'] > 0:
         try:
-            wt_opt['tune_rosco_ivc.flp_kp_norm']      = rosco_init_options['flp_kp_norm']
-            wt_opt['tune_rosco_ivc.flp_tau']       = rosco_init_options['flp_tau']
+            wt_opt['tune_rosco_ivc.dac_kp_norm']      = rosco_init_options['dac_kp_norm']
+            wt_opt['tune_rosco_ivc.dac_tau']       = rosco_init_options['dac_tau']
         except:
-            raise Exception('If DAC_Mode > 0, you must set flp_kp_norm, flp_tau in the modeling options')
+            raise Exception('If DAC_Mode > 0, you must set dac_kp_norm, dac_tau in the modeling options')
 
     # IPC 
     if rosco_init_options['IPC_ControlMode']:

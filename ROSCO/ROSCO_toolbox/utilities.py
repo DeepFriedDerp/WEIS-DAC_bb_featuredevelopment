@@ -95,7 +95,7 @@ def write_DISCON(turbine, controller, param_file='DISCON.IN', txt_filename='Cp_C
     file.write('{:<13.5f}       ! F_YawErr          - Low pass filter corner frequency for yaw controller [rad/s].\n'.format(rosco_vt['F_YawErr']))
     file.write('{}! F_FlCornerFreq    - Natural frequency and damping in the second order low pass filter of the tower-top fore-aft motion for floating feedback control [rad/s, -].\n'.format(''.join('{:<4.6f}  '.format(rosco_vt['F_FlCornerFreq'][i]) for i in range(len(rosco_vt['F_FlCornerFreq'])))))
     file.write('{:<13.5f}       ! F_FlHighPassFreq    - Natural frequency of first-order high-pass filter for nacelle fore-aft motion [rad/s].\n'.format(rosco_vt['F_FlHighPassFreq']))
-    file.write('{}! F_FlpCornerFreq   - Corner frequency and damping in the second order low pass filter of the blade root bending moment for DAC control [rad/s, -].\n'.format(''.join('{:<4.6f}  '.format(rosco_vt['F_FlpCornerFreq'][i]) for i in range(len(rosco_vt['F_FlpCornerFreq'])))))
+    file.write('{}! F_DACCornerFreq   - Corner frequency and damping in the second order low pass filter of the blade root bending moment for DAC control [rad/s, -].\n'.format(''.join('{:<4.6f}  '.format(rosco_vt['F_DACCornerFreq'][i]) for i in range(len(rosco_vt['F_DACCornerFreq'])))))
 
     file.write('\n')
     file.write('!------- BLADE PITCH CONTROL ----------------------------------------------\n')
@@ -187,8 +187,8 @@ def write_DISCON(turbine, controller, param_file='DISCON.IN', txt_filename='Cp_C
     file.write('\n')
     file.write('!------- DAC ACTUATION -----------------------------------------------------\n')
     file.write('{:<014.5f}      ! dac_param             - Initial or steady state DAC parameter value [units based on dac device]\n'.format(rosco_vt['dac_param']))
-    file.write('{:<014.8e}      ! Flp_Kp                - Blade root bending moment proportional gain for DAC control [s]\n'.format(rosco_vt['Flp_Kp']))
-    file.write('{:<014.8e}      ! Flp_Ki                - DAC parameter integral gain for DAC control [-]\n'.format(rosco_vt['Flp_Ki']))
+    file.write('{:<014.8e}      ! DAC_Kp                - Blade root bending moment proportional gain for DAC control [s]\n'.format(rosco_vt['DAC_Kp']))
+    file.write('{:<014.8e}      ! DAC_Ki                - DAC parameter integral gain for DAC control [-]\n'.format(rosco_vt['DAC_Ki']))
     file.write('{:<014.5f}      ! dac_maxval            - Maximum (and minimum) DAC parameter value [rad]\n'.format(rosco_vt['dac_maxval']))
     file.write('{:<014.5f}      ! dac_bb_threshold      - DAC actuation threshold in bang-bang mode\n'.format(rosco_vt['dac_bb_threshold'])) # Gerrit
     file.write('{:<014.5f}      ! dac_bb_startDelay     - DAC control initial delay in bang-bang mode\n'.format(rosco_vt['dac_bb_startDelay'])) # Gerrit
@@ -413,7 +413,7 @@ def DISCON_dict(turbine, controller, txt_filename=None):
     DISCON_dict['F_SSCornerFreq'] = controller.f_ss_cornerfreq
     DISCON_dict['F_FlHighPassFreq'] = controller.f_fl_highpassfreq
     DISCON_dict['F_FlCornerFreq'] = [controller.ptfm_freq, 1.0]
-    DISCON_dict['F_FlpCornerFreq'] = [turbine.bld_flapwise_freq*3, 1.0]
+    DISCON_dict['F_DACCornerFreq'] = [turbine.bld_flapwise_freq*3, 1.0]
     DISCON_dict['F_WECornerFreq']       = controller.f_we_cornerfreq
     DISCON_dict['F_SSCornerFreq']       = controller.f_ss_cornerfreq
     DISCON_dict['F_YawErr']             = controller.f_yawerr
@@ -494,8 +494,8 @@ def DISCON_dict(turbine, controller, txt_filename=None):
     DISCON_dict['Fl_Kp']            = controller.Kp_float
     # ------- DAC ACTUATION -------
     DISCON_dict['dac_param']            = controller.dac_param
-    DISCON_dict['Flp_Kp']               = controller.Kp_flap[-1]
-    DISCON_dict['Flp_Ki']               = controller.Ki_flap[-1]
+    DISCON_dict['DAC_Kp']               = controller.Kp_flap[-1]
+    DISCON_dict['DAC_Ki']               = controller.Ki_flap[-1]
     DISCON_dict['dac_maxval']           = controller.dac_maxval
     DISCON_dict['dac_bb_threshold']     = controller.dac_bb_threshold # Gerrit
     DISCON_dict['dac_bb_startDelay']    = controller.dac_bb_startDelay # Gerrit

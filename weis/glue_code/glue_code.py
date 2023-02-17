@@ -58,8 +58,8 @@ class WindPark(om.Group):
         tune_rosco_ivc.add_output('zeta_pc',          val=np.zeros(n_PC),                    desc='Pitch controller damping ratio')
         tune_rosco_ivc.add_output('omega_vs',         val=0.0, units='rad/s',     desc='Generator torque controller natural frequency')
         tune_rosco_ivc.add_output('zeta_vs',          val=0.0,                    desc='Generator torque controller damping ratio')
-        tune_rosco_ivc.add_output('flp_kp_norm',      val=0.0,                    desc='DAC controller normalized gain') #TODO bem: may need to change naming convention
-        tune_rosco_ivc.add_output('flp_tau',          val=0.0, units='s',         desc='DAC controller integral gain time constant')
+        tune_rosco_ivc.add_output('dac_kp_norm',      val=0.0,                    desc='DAC controller normalized gain') #TODO bem: may need to change naming convention
+        tune_rosco_ivc.add_output('dac_tau',          val=0.0, units='s',         desc='DAC controller integral gain time constant')
         tune_rosco_ivc.add_output('IPC_Kp1p',         val=0.0, units='s',         desc='Individual pitch controller 1p proportional gain')
         tune_rosco_ivc.add_output('IPC_Ki1p',         val=0.0,                    desc='Individual pitch controller 1p integral gain')
         tune_rosco_ivc.add_output('stability_margin', val=0.0,                    desc='Stability margin for robust tuning')
@@ -216,8 +216,8 @@ class WindPark(om.Group):
             self.connect('tune_rosco_ivc.Kp_float',         'sse_tune.tune_rosco.Kp_float')
             self.connect('dac_ivc.delta_max_pos',           'sse_tune.tune_rosco.delta_max_pos')
             if modeling_options['ROSCO']['DAC_Mode'] > 0:
-                self.connect('tune_rosco_ivc.flp_kp_norm',    'sse_tune.tune_rosco.flp_kp_norm')
-                self.connect('tune_rosco_ivc.flp_tau',     'sse_tune.tune_rosco.flp_tau')
+                self.connect('tune_rosco_ivc.dac_kp_norm',    'sse_tune.tune_rosco.dac_kp_norm')
+                self.connect('tune_rosco_ivc.dac_tau',     'sse_tune.tune_rosco.dac_tau')
 
         if modeling_options['Level1']['flag']:
             self.add_subsystem('raft', RAFT_WEIS(modeling_options = modeling_options, analysis_options=opt_options))
@@ -888,8 +888,8 @@ class WindPark(om.Group):
                 self.connect('tune_rosco_ivc.zeta_vs',         'outputs_2_screen_weis.zeta_vs')
                 self.connect('tune_rosco_ivc.Kp_float',        'outputs_2_screen_weis.Kp_float')
                 self.connect('tune_rosco_ivc.ptfm_freq',       'outputs_2_screen_weis.ptfm_freq')
-                self.connect('tune_rosco_ivc.flp_kp_norm',       'outputs_2_screen_weis.flp_kp_norm')
-                self.connect('tune_rosco_ivc.flp_tau',        'outputs_2_screen_weis.flp_tau')
+                self.connect('tune_rosco_ivc.dac_kp_norm',       'outputs_2_screen_weis.dac_kp_norm')
+                self.connect('tune_rosco_ivc.dac_tau',        'outputs_2_screen_weis.dac_tau')
                 self.connect('tune_rosco_ivc.IPC_Kp1p',        'outputs_2_screen_weis.IPC_Kp1p')
                 self.connect('tune_rosco_ivc.IPC_Ki1p',        'outputs_2_screen_weis.IPC_Ki1p')
                 self.connect('dac_ivc.dac_end',            'outputs_2_screen_weis.dac_end')

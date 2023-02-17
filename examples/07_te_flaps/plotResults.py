@@ -25,7 +25,7 @@ op = output_processing()
 #fn3 = 'BAR_DRC_LE_SS75SE95_DLC11_IEC_07.outb'
 outb_filename_1 = 'BAR10_0.outb'
 
-openfast_dir_1 = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'temp', 'BAR10_BangBang_lems_01')
+openfast_dir_1 = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'temp', 'BAR10_BangBang_flap_01')
 openfast_dir_2 = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'temp', 'BAR10_AlwaysOff')
 #openfast_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_DRC_LE0_SS50SE95_DLC11')
 #openfast_dir2 = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'BAR_DRC_LE_DLC51')

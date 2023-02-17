@@ -314,21 +314,21 @@ properties:
                 type: boolean
                 description: Whether to automatically tune Kp_float
                 default: True
-            zeta_flp:
+            zeta_dac:
                 type: number
                 minimum: 0
                 description: DAC controller desired damping ratio [-]
                 unit: none
-            omega_flp:
+            omega_dac:
                 type: number
                 minimum: 0
                 description: DAC controller desired natural frequency [rad/s]
                 unit: rad/s
-            flp_kp_norm:
+            dac_kp_norm:
                 type: number
                 minimum: 0
                 description: DAC controller normalization term for DC gain (kappa)
-            flp_tau:
+            dac_tau:
                 type: number
                 minimum: 0
                 description: DAC controller time constant for integral gain
@@ -556,7 +556,7 @@ properties:
                         type: number
                         description: Natural frequency of first-order high-pass filter for nacelle fore-aft motion
                         units: rad/s
-                    F_FlpCornerFreq:
+                    F_DACCornerFreq:
                         type: array
                         items:
                             type: number
@@ -835,11 +835,11 @@ properties:
                         type: number
                         description: Initial or steady state DAC parameter value
                         units: rad
-                    Flp_Kp:
+                    DAC_Kp:
                         type: number
                         description: Blade root bending moment proportional gain for DAC control
                         units: s
-                    Flp_Ki:
+                    DAC_Ki:
                         type: number
                         description: DAC displacement integral gain for DAC control
                     dac_maxval:

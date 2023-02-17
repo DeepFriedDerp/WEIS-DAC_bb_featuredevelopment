@@ -808,7 +808,7 @@ def get_dac_polars(run_xfoil_params, afi):
             Re_loc_af[:,ind] = c* maxTS * rR / KinVisc
             Ma_loc_af[:,ind] = maxTS * rR / SpdSound
             
-            if dac_model ==1:
+            if dac_model == 1:
                 print('Run xfoil for nondimensional blade span section s = ' + str(s) + ' with ' + str(dac_control_af[0,ind]*180./np.pi) + ' deg flap deflection angle; Re equal to ' + str(Re_loc_af[0,ind]) + '; Ma equal to ' + str(Ma_loc_af[0,ind]))
 
                 xfoil_kw = {'AoA_min': -20,
@@ -818,12 +818,14 @@ def get_dac_polars(run_xfoil_params, afi):
                             }
 
                 data = runXfoil(xfoil_path, dac_profiles[afi]['coords'][:, 0, ind],dac_profiles[afi]['coords'][:, 1, ind],Re_loc_af[0, ind], **xfoil_kw)
-            else:
+            elif dac_model == 2:
                 print('Run General DAC Model for nondimensional blade span section s = ' + str(round(s,6)) + ' with ' + str(dac_control_af[0,ind]) + ' dac control parameter; Re equal to ' + str(round(Re_loc_af[0,ind],1)) + '; Ma equal to ' + str(round(Ma_loc_af[0,ind],5)))
 
                 clmax_ratio,stall_shift,LD_ratio,alpha0_shift,S_ratio,CD0_shift = LE_Spoiler(dac_control_af[0,ind]) #bem: TODO I need to add in the ability to use the low fidelity TE flap as an option or build in the ability to use different low fidelity models
                 data = general_dac_mod(aoa,cl_interp_dac_af[:,0,ind],cd_interp_dac_af[:,0,ind],cm_interp_dac_af[:,0,ind],clmax_ratio,stall_shift,LD_ratio,alpha0_shift,S_ratio,CD0_shift)
                 # print("Lift data: ", data[:,1])
+            else:
+                print('No DAC_Model chosen') #TODO bem: Need to add error handling here
             
             oldpolar= Polar(Re_loc_af[0,ind], data[:,0],data[:,1],data[:,2],data[:,4]) # data[:,0] is alpha, data[:,1] is Cl, data[:,2] is Cd, data[:,4] is Cm
             try:

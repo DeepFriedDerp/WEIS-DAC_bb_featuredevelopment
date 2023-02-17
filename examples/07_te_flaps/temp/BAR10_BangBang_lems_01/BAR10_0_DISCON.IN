@@ -1,5 +1,5 @@
 ! Controller parameter input file for the WEIS Turbine wind turbine
-!    - File written using ROSCO version 2.6.0 controller tuning logic on 02/15/23
+!    - File written using ROSCO version 2.6.0 controller tuning logic on 02/17/23
 
 !------- DEBUG ------------------------------------------------------------
 1                   ! LoggingLevel		- {0: write no debug files, 1: write standard output .dbg-file, 2: LoggingLevel 1 + ROSCO LocalVars (.dbg2) 3: LoggingLevel 2 + complete avrSWAP-array (.dbg3)}
@@ -33,7 +33,7 @@
 0.17952             ! F_YawErr          - Low pass filter corner frequency for yaw controller [rad/s].
 0.000000  1.000000  ! F_FlCornerFreq    - Natural frequency and damping in the second order low pass filter of the tower-top fore-aft motion for floating feedback control [rad/s, -].
 0.01042             ! F_FlHighPassFreq    - Natural frequency of first-order high-pass filter for nacelle fore-aft motion [rad/s].
-11.051912  1.000000  ! F_FlpCornerFreq   - Corner frequency and damping in the second order low pass filter of the blade root bending moment for DAC control [rad/s, -].
+11.051912  1.000000  ! F_DACCornerFreq   - Corner frequency and damping in the second order low pass filter of the blade root bending moment for DAC control [rad/s, -].
 
 !------- BLADE PITCH CONTROL ----------------------------------------------
 30                  ! PC_GS_n			- Amount of gain-scheduling table entries
@@ -120,8 +120,8 @@
 
 !------- DAC ACTUATION -----------------------------------------------------
 0.000000000000      ! dac_param             - Initial or steady state DAC parameter value [units based on dac device]
-2.87298703e-04      ! Flp_Kp                - Blade root bending moment proportional gain for DAC control [s]
-2.34373160e-05      ! Flp_Ki                - DAC parameter integral gain for DAC control [-]
+2.87298703e-04      ! DAC_Kp                - Blade root bending moment proportional gain for DAC control [s]
+2.34373160e-05      ! DAC_Ki                - DAC parameter integral gain for DAC control [-]
 9.000000000000      ! dac_maxval            - Maximum (and minimum) DAC parameter value [rad]
 19000000.00000      ! dac_bb_threshold      - DAC actuation threshold in bang-bang mode
 0.000000000000      ! dac_bb_startDelay     - DAC control initial delay in bang-bang mode

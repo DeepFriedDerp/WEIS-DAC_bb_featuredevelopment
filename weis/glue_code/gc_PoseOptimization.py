@@ -34,9 +34,9 @@ class PoseOptimizationWEIS(PoseOptimization):
             n_add += 1
         if self.opt['design_variables']['control']['servo']['torque_control']['zeta']['flag']:
             n_add += 1
-        if self.opt['design_variables']['control']['servo']['dac_control']['flp_kp_norm']['flag']:
+        if self.opt['design_variables']['control']['servo']['dac_control']['dac_kp_norm']['flag']:
             n_add += 1
-        if self.opt['design_variables']['control']['servo']['dac_control']['flp_tau']['flag']:
+        if self.opt['design_variables']['control']['servo']['dac_control']['dac_tau']['flag']:
             n_add += 1
         if self.opt['design_variables']['control']['dac']['dac_end']['flag']:
             n_add += self.modeling['WISDEM']['RotorSE']['n_dac']
@@ -138,14 +138,14 @@ class PoseOptimizationWEIS(PoseOptimization):
             wt_opt.model.add_design_var('dac_ivc.dac_ext', lower=control_opt['dac']['dac_ext']['min'],
                                                             upper=control_opt['dac']['dac_ext']['max'])
         if 'dac_control' in control_opt['servo']:
-            if control_opt['servo']['dac_control']['flp_kp_norm']['flag']:
-                wt_opt.model.add_design_var('tune_rosco_ivc.flp_kp_norm', 
-                                    lower=control_opt['servo']['dac_control']['flp_kp_norm']['min'], 
-                                    upper=control_opt['servo']['dac_control']['flp_kp_norm']['max'])
-            if control_opt['servo']['dac_control']['flp_tau']['flag']:
-                wt_opt.model.add_design_var('tune_rosco_ivc.flp_tau', 
-                                    lower=control_opt['servo']['dac_control']['flp_tau']['min'], 
-                                    upper=control_opt['servo']['dac_control']['flp_tau']['max'])
+            if control_opt['servo']['dac_control']['dac_kp_norm']['flag']:
+                wt_opt.model.add_design_var('tune_rosco_ivc.dac_kp_norm', 
+                                    lower=control_opt['servo']['dac_control']['dac_kp_norm']['min'], 
+                                    upper=control_opt['servo']['dac_control']['dac_kp_norm']['max'])
+            if control_opt['servo']['dac_control']['dac_tau']['flag']:
+                wt_opt.model.add_design_var('tune_rosco_ivc.dac_tau', 
+                                    lower=control_opt['servo']['dac_control']['dac_tau']['min'], 
+                                    upper=control_opt['servo']['dac_control']['dac_tau']['max'])
 
         if control_opt['ps_percent']['flag']:
             wt_opt.model.add_design_var('tune_rosco_ivc.ps_percent', lower=control_opt['ps_percent']['lower_bound'],
@@ -252,10 +252,10 @@ class PoseOptimizationWEIS(PoseOptimization):
         if control_constraints['dac_control']['flag']:
             if self.modeling['Level3']['flag'] != True:
                 raise Exception('Please turn on the call to OpenFAST if you are trying to optimize DAC devices.')
-            wt_opt.model.add_constraint('sse_tune.tune_rosco.flptune_coeff1', #TODO bem: may need to update flptune_coef name later
+            wt_opt.model.add_constraint('sse_tune.tune_rosco.dactune_coeff1',
                 lower = control_constraints['dac_control']['min'],
                 upper = control_constraints['dac_control']['max'])
-            wt_opt.model.add_constraint('sse_tune.tune_rosco.flptune_coeff2', 
+            wt_opt.model.add_constraint('sse_tune.tune_rosco.dactune_coeff2', 
                 lower = control_constraints['dac_control']['min'],
                 upper = control_constraints['dac_control']['max'])    
         

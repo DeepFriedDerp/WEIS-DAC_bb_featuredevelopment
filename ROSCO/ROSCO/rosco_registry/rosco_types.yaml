@@ -99,7 +99,7 @@ ControlParameters:
     F_YawErr:
       <<: *real
       description: Corner low pass filter corner frequency for yaw controller [rad/s].
-    F_FlpCornerFreq:
+    DACCornerFreq:
       <<: *real
       description: Corner frequency (-3dB point) in the second order low pass filter of the blade root bending moment for DAC control [rad/s].
       allocatable: True
@@ -365,16 +365,16 @@ ControlParameters:
     DAC_Mode:
       <<: *integer
       description: DAC actuator mode {0 - off, 1 - fixed DAC parameter value, 2 - PI DAC control, 3 - Cyclic control, 4 - Bang-Bang control}
-    dac_param: #TODO bem: need to check whether this needs to be capitalized
+    dac_param: 
       <<: *real
       description: Fixed DAC parameter values (units of DAC device)
-    Flp_Kp:
+    DAC_Kp:
       <<: *real
       description: PI DAC control proportional gain 
-    Flp_Ki:
+    DAC_Ki:
       <<: *real
       description: PI DAC control integral gain 
-    dac_maxval: #TODO bem: need to check whether it needs capitalization
+    dac_maxval: 
       <<: *real
       description: Maximum (and minimum) DAC parameter value [units of DAC parameter]
     dac_bb_threshold: #Ben: I added these last 4 items

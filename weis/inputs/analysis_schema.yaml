@@ -188,7 +188,7 @@ properties:
                                 type: object
                                 default: {}
                                 properties:
-                                    flp_kp_norm: 
+                                    dac_kp_norm: 
                                         type: object
                                         default: {}
                                         properties:
@@ -205,7 +205,7 @@ properties:
                                                 minimum: 0.0
                                                 maximum: 10.0
                                                 unit: none
-                                    flp_tau: 
+                                    dac_tau: 
                                         type: object
                                         default: {}
                                         properties:

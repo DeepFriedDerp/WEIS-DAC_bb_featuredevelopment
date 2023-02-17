@@ -537,7 +537,7 @@ CONTAINS
                 LocalVar%dac_param(3) = CntrPar%dac_param
                 ! Initialize controller
                 IF (CntrPar%DAC_Mode == 2) THEN
-                    LocalVar%dac_param(K) = PIIController(RootMyb_VelErr(K), 0 - LocalVar%dac_param(K), CntrPar%Flp_Kp, CntrPar%Flp_Ki, 0.05, -CntrPar%dac_maxval , CntrPar%dac_maxval , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                    LocalVar%dac_param(K) = PIIController(RootMyb_VelErr(K), 0 - LocalVar%dac_param(K), CntrPar%DAC_Kp, CntrPar%DAC_Ki, 0.05, -CntrPar%dac_maxval , CntrPar%dac_maxval , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
                 ENDIF
 
             ! Steady DAC parameter value
@@ -550,7 +550,7 @@ CONTAINS
             ELSEIF (CntrPar%DAC_Mode == 2) THEN
                 DO K = 1,LocalVar%NumBl
                     ! Find dac value command - includes an integral term to encourage zero dac value
-                    LocalVar%dac_param(K) = PIIController(-LocalVar%rootMOOPF(K), 0 - LocalVar%dac_param(K), CntrPar%Flp_Kp, CntrPar%Flp_Ki, REAL(0.05,DbKi), -CntrPar%dac_maxval , CntrPar%dac_maxval , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                    LocalVar%dac_param(K) = PIIController(-LocalVar%rootMOOPF(K), 0 - LocalVar%dac_param(K), CntrPar%DAC_Kp, CntrPar%DAC_Ki, REAL(0.05,DbKi), -CntrPar%dac_maxval , CntrPar%dac_maxval , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
                     ! Saturation Limits
                     LocalVar%dac_param(K) = saturate(LocalVar%dac_param(K), -CntrPar%dac_maxval, CntrPar%dac_maxval)
                 END DO
@@ -561,8 +561,8 @@ CONTAINS
                 CALL ColemanTransform(LocalVar%rootMOOPF, LocalVar%Azimuth, NP_1, axisTilt_1P, axisYaw_1P)
 
                 ! Apply PI control
-                DAC_axisTilt_1P = PIController(axisTilt_1P, CntrPar%Flp_Kp, CntrPar%Flp_Ki, -CntrPar%dac_maxval, CntrPar%dac_maxval, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
-                DAC_axisYaw_1P = PIController(axisYaw_1P, CntrPar%Flp_Kp, CntrPar%Flp_Ki, -CntrPar%dac_maxval, CntrPar%dac_maxval, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                DAC_axisTilt_1P = PIController(axisTilt_1P, CntrPar%DAC_Kp, CntrPar%DAC_Ki, -CntrPar%dac_maxval, CntrPar%dac_maxval, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                DAC_axisYaw_1P = PIController(axisYaw_1P, CntrPar%DAC_Kp, CntrPar%DAC_Ki, -CntrPar%dac_maxval, CntrPar%dac_maxval, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
 
                 ! Pass direct and quadrature axis through the inverse Coleman transform to get the commanded pitch angles
                 CALL ColemanTransformInverse(DAC_axisTilt_1P, DAC_axisYaw_1P, LocalVar%Azimuth, NP_1, 0.0_DbKi, LocalVar%dac_param)

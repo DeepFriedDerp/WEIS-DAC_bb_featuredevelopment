@@ -30,8 +30,8 @@ class Outputs_2_Screen(om.ExplicitComponent):
         self.add_input('ptfm_freq',     val=0.0, units = 'rad/s')
         self.add_input('omega_vs',      val=0.0, units='rad/s')
         self.add_input('zeta_vs',       val=0.0)
-        self.add_input('flp_kp_norm',   val=0.0)
-        self.add_input('flp_tau',       val=0.0, units='s')
+        self.add_input('dac_kp_norm',   val=0.0)
+        self.add_input('dac_tau',       val=0.0, units='s')
         self.add_input('IPC_Kp1p',      val=0.0, units='s')
         self.add_input('IPC_Ki1p',      val=0.0,)
         self.add_input('tip_deflection',val=0.0, units='m')
@@ -66,8 +66,8 @@ class Outputs_2_Screen(om.ExplicitComponent):
                 print('Floating Feedback: Kp_float = {:2.3f}, ptfm_freq = {:2.3f}'.format(inputs['Kp_float'][0], inputs['ptfm_freq'][0]))
             
             # DAC control
-            if self.options['opt_options']['design_variables']['control']['servo']['dac_control']['flp_kp_norm']['flag'] or self.options['opt_options']['design_variables']['control']['servo']['dac_control']['flp_kp_norm']['flag']:
-                print('DAC PI gain inputs: flp_kp_norm = {:2.3f}, flp_tau = {:2.3f}'.format(inputs['flp_kp_norm'][0], inputs['flp_tau'][0]))
+            if self.options['opt_options']['design_variables']['control']['servo']['dac_control']['dac_kp_norm']['flag'] or self.options['opt_options']['design_variables']['control']['servo']['dac_control']['dac_kp_norm']['flag']:
+                print('DAC PI gain inputs: dac_kp_norm = {:2.3f}, dac_tau = {:2.3f}'.format(inputs['dac_kp_norm'][0], inputs['dac_tau'][0]))
             
             # IPC
             if self.options['opt_options']['design_variables']['control']['servo']['ipc_control']['Kp']:

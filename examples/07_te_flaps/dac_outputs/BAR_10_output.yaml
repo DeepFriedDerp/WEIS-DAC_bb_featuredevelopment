@@ -436,8 +436,8 @@ components:
                        -  [24.399349588280014, 0.0, 0.0, 0.0, 0.0, -0.1795157684387868, 24.399349588280014, 0.0, 0.0, 0.0, 0.0007425108792721919, 24.399349588280014, 0.1795157684387868, -0.0007425108792721919, 0.0, 1.4700574654608107, 0.0, 0.0, 0.08123899288750458, 0.0, 1.5512964583483153]
                        -  [10.132577637481157, 0.0, 0.0, 0.0, 0.0, 0.229029569683907, 10.132577637481157, 0.0, 0.0, 0.0, 0.007135739831967308, 10.132577637481157, -0.229029569683907, -0.007135739831967308, 0.0, 0.1780025592171543, 0.0, 0.0, 0.00893733931921993, 0.0, 0.18693989853637422]
         aerodynamic_control:
-            le_spoilers:
-               -  {span_start: 0.5, span_end: 0.95, delta_max_pos: 9, delta_max_neg: 0}
+            te_flaps:
+               -  {span_start: 0.5, span_end: 0.95, chord_start: 0.8, delta_max_pos: 0.17453292519943295, delta_max_neg: -0.17453292519943295}
     hub: {cone_angle: 0.03490658503988659, diameter: 6.0, drag_coefficient: 0.5, hub_material: steel, spinner_material: glass_biax, flange_t2shell_t: 4.0, flange_OD2hub_D: 0.5, flange_ID2OD: 0.8, hub_blade_spacing_margin: 1.2, hub_stress_concentration: 2.5, n_front_brackets: 3, n_rear_brackets: 3, clearance_hub_spinner: 0.75, spin_hole_incr: 1.2, pitch_system_scaling_factor: 0.54, spinner_gust_ws: 70.0}
     nacelle:
         drivetrain:

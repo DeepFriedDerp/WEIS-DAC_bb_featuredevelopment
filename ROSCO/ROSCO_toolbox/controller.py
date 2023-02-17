@@ -87,7 +87,7 @@ class Controller():
         self.PC_GS_n            = controller_params['PC_GS_n']
         self.dac_maxval         = controller_params['dac_maxval']
         self.dac_bb_startDelay  = controller_params['dac_bb_startDelay']
-        #self.dac_bb_threshold   = controller_params['dac_bb_threshold']
+        self.dac_bb_threshold   = controller_params['dac_bb_threshold']
         self.dac_bb_depTime     = controller_params['dac_bb_depTime']
         self.dac_bb_useIDAC     = controller_params['dac_bb_useIDAC']
         self.Kp_ipc1p           = controller_params['IPC_Kp1p']
@@ -99,11 +99,11 @@ class Controller():
         #  Optional parameters without defaults
         if self.DAC_Mode > 0:
             try:
-                self.flp_kp_norm = controller_params['flp_kp_norm']
-                self.flp_tau     = controller_params['flp_tau']
+                self.dac_kp_norm = controller_params['dac_kp_norm']
+                self.dac_tau     = controller_params['dac_tau']
             except:
                 raise Exception(
-                    'ROSCO_toolbox:controller: flp_kp_norm and flp_tau must be set if DAC_Mode > 0')
+                    'ROSCO_toolbox:controller: dac_kp_norm and dac_tau must be set if DAC_Mode > 0')
 
         if self.DAC_Mode == 4: # Gerrit
             try:
@@ -488,10 +488,10 @@ class Controller():
             self.kappa[i]=C1[i]+C2[i]
 
         # PI Gains
-        if (self.flp_kp_norm == 0 or self.flp_tau == 0) or (not self.flp_kp_norm or not self.flp_tau):
-            raise ValueError('flp_kp_norm and flp_tau must be nonzero for DAC_Mode >= 1')
-        self.Kp_flap = self.flp_kp_norm / self.kappa
-        self.Ki_flap = self.flp_kp_norm / self.kappa / self.flp_tau
+        if (self.dac_kp_norm == 0 or self.dac_tau == 0) or (not self.dac_kp_norm or not self.dac_tau):
+            raise ValueError('dac_kp_norm and dac_tau must be nonzero for DAC_Mode >= 1')
+        self.Kp_flap = self.dac_kp_norm / self.kappa
+        self.Ki_flap = self.dac_kp_norm / self.kappa / self.dac_tau
 
 class ControllerBlocks():
     '''

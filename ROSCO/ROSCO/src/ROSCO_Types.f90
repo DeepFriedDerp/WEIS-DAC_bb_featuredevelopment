@@ -20,7 +20,7 @@ TYPE, PUBLIC :: ControlParameters
     REAL(DbKi), DIMENSION(:), ALLOCATABLE     :: F_FlCornerFreq              ! Corner frequency (-3dB point) in the second order low pass filter of the tower-top fore-aft motion for floating feedback control [rad/s].
     REAL(DbKi)                    :: F_FlHighPassFreq            ! Natural frequency of first-roder high-pass filter for nacelle fore-aft motion [rad/s].
     REAL(DbKi)                    :: F_YawErr                    ! Corner low pass filter corner frequency for yaw controller [rad/s].
-    REAL(DbKi), DIMENSION(:), ALLOCATABLE     :: F_FlpCornerFreq             ! Corner frequency (-3dB point) in the second order low pass filter of the blade root bending moment for DAC control [rad/s].
+    REAL(DbKi), DIMENSION(:), ALLOCATABLE     :: F_DACCornerFreq             ! Corner frequency (-3dB point) in the second order low pass filter of the blade root bending moment for DAC control [rad/s].
     INTEGER(IntKi)                :: TD_Mode                     ! Tower damper mode (0- no tower damper, 1- feed back translational nacelle accelleration to pitch angle
     REAL(DbKi)                    :: FA_HPFCornerFreq            ! Corner frequency (-3dB point) in the high-pass filter on the fore-aft acceleration signal [rad/s]
     REAL(DbKi)                    :: FA_IntSat                   ! Integrator saturation (maximum signal amplitude contrbution to pitch from FA damper), [rad]
@@ -96,8 +96,8 @@ TYPE, PUBLIC :: ControlParameters
     REAL(DbKi)                    :: Fl_Kp                       ! Nacelle velocity proportional feedback gain [s]
     INTEGER(IntKi)                :: DAC_Mode                    ! DAC actuator mode {0 - off, 1 - fixed DAC position, 2 - PI DAC control}
     REAL(DbKi)                    :: dac_param                   ! Fixed DAC parameter value (units of DAC device)
-    REAL(DbKi)                    :: Flp_Kp                      ! PI DAC control proportional gain
-    REAL(DbKi)                    :: Flp_Ki                      ! PI DAC control integral gain
+    REAL(DbKi)                    :: DAC_Kp                      ! PI DAC control proportional gain
+    REAL(DbKi)                    :: DAC_Ki                      ! PI DAC control integral gain
     REAL(DbKi)                    :: dac_maxval                  ! Maximum (and minimum) DAC parameter value
     REAL(DbKi)                    :: dac_bb_threshold            ! Threshold for dac mode = 4
     Real(DbKi)                    :: dac_bb_startDelay           ! Time into sim where DAC bang-bang controller activates (DAC_Mode = 4)

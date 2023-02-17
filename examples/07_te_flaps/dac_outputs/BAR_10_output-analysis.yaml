@@ -33,8 +33,8 @@ design_variables:
                 omega: {flag: false, min: 0.1, max: 0.7}
                 zeta: {flag: false, min: 0.7, max: 1.5}
             dac_control:
-                flp_kp_norm: {flag: false, min: 0.01, max: 5.0}
-                flp_tau: {flag: false, min: 5, max: 30}
+                dac_kp_norm: {flag: false, min: 0.01, max: 5.0}
+                dac_tau: {flag: false, min: 5, max: 30}
             ipc_control:
                 Kp: {flag: false, min: 0.0, max: 0.0, ref: 1e-08}
                 Ki: {flag: false, min: 0.0, max: 1e-07, ref: 1e-08}
