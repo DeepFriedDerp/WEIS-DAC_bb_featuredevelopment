@@ -1,6 +1,0 @@
-# The fortran modules provided by this target.
-provides
- extptfm_mckf.mod
- extptfm_mckf_io.mod
- extptfm_mckf_parameters.mod
- extptfm_mckf_types.mod

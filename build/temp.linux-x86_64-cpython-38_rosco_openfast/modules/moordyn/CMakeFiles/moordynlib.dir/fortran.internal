@@ -1,5 +1,0 @@
-# The fortran modules provided by this target.
-provides
- moordyn.mod
- moordyn_io.mod
- moordyn_types.mod

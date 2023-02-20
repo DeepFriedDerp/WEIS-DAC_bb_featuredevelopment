@@ -1,6 +1,0 @@
-# The fortran modules provided by this target.
-provides
- fast_linear.mod
- fast_modtypes.mod
- fast_solver.mod
- fast_subs.mod
