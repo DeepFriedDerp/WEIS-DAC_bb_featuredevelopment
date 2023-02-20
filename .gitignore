@@ -1,0 +1,8 @@
+**/*egg-info*
+examples/**/dac_outputs
+examples/**/temp
+**/build
+**/meson-build
+/local
+**/__pycache__
+**/:00.bl
