@@ -1,0 +1,12 @@
+# The fortran modules provided by this target.
+provides
+ aerodyn.mod
+ aerodyn_allbldndouts_io.mod
+ aerodyn_io.mod
+ aerodyn_types.mod
+ bemt.mod
+ bemt_types.mod
+ bemtuncoupled.mod
+ dbemt.mod
+ dbemt_types.mod
+ mod_root1dim.mod

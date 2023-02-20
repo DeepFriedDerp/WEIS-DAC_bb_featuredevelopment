@@ -242,7 +242,7 @@ CONTAINS
         CALL ParseInput(UnControllerParameters,CurLine,'SD_Mode',accINFILE(1),CntrPar%SD_Mode,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'FL_Mode',accINFILE(1),CntrPar%FL_Mode,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'TD_Mode',accINFILE(1),CntrPar%TD_Mode,ErrVar)
-        CALL ParseInput(UnControllerParameters,CurLine,'Flp_Mode',accINFILE(1),CntrPar%Flp_Mode,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'DAC_Mode',accINFILE(1),CntrPar%DAC_Mode,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'OL_Mode',accINFILE(1),CntrPar%OL_Mode,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'PA_Mode',accINFILE(1),CntrPar%PA_Mode,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'Ext_Mode',accINFILE(1),CntrPar%Ext_Mode,ErrVar)
@@ -261,7 +261,7 @@ CONTAINS
         CALL ParseInput(UnControllerParameters,CurLine,'F_YawErr',accINFILE(1),CntrPar%F_YawErr, ErrVar)
         CALL ParseAry(UnControllerParameters, CurLine, 'F_FlCornerFreq', CntrPar%F_FlCornerFreq, 2, accINFILE(1), ErrVar )
         CALL ParseInput(UnControllerParameters,CurLine,'F_FlHighPassFreq',accINFILE(1),CntrPar%F_FlHighPassFreq,ErrVar)
-        CALL ParseAry(UnControllerParameters, CurLine, 'F_FlpCornerFreq', CntrPar%F_FlpCornerFreq, 2, accINFILE(1), ErrVar )
+        CALL ParseAry(UnControllerParameters, CurLine, 'F_DACCornerFreq', CntrPar%F_DACCornerFreq, 2, accINFILE(1), ErrVar )
         CALL ReadEmptyLine(UnControllerParameters,CurLine)
 
         !----------- BLADE PITCH CONTROLLER CONSTANTS -----------
@@ -370,14 +370,14 @@ CONTAINS
 
         !------------ Flaps ------------
         CALL ReadEmptyLine(UnControllerParameters,CurLine)
-        CALL ParseInput(UnControllerParameters,CurLine,'Flp_Angle',accINFILE(1),CntrPar%Flp_Angle,ErrVar)
-        CALL ParseInput(UnControllerParameters,CurLine,'Flp_Kp',accINFILE(1),CntrPar%Flp_Kp,ErrVar)
-        CALL ParseInput(UnControllerParameters,CurLine,'Flp_Ki',accINFILE(1),CntrPar%Flp_Ki,ErrVar)
-        CALL ParseInput(UnControllerParameters,CurLine,'Flp_MaxPit',accINFILE(1),CntrPar%Flp_MaxPit,ErrVar)
-        CALL ParseInput(UnControllerParameters,CurLine,'flp_bb_threshold',accINFILE(1),CntrPar%flp_bb_threshold,ErrVar) ! Gerrit
-        CALL ParseInput(UnControllerParameters,CurLine,'flp_bb_startDelay',accINFILE(1),CntrPar%flp_bb_startDelay,ErrVar) ! Gerrit
-        CALL ParseInput(UnControllerParameters,CurLine,'flp_bb_depTime',accINFILE(1),CntrPar%flp_bb_depTime,ErrVar) ! Gerrit
-        CALL ParseInput(UnControllerParameters,CurLine,'flp_bb_useIDAC',accINFILE(1),CntrPar%flp_bb_useIDAC,ErrVar) ! Gerrit
+        CALL ParseInput(UnControllerParameters,CurLine,'dac_param',accINFILE(1),CntrPar%dac_param,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'DAC_Kp',accINFILE(1),CntrPar%DAC_Kp,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'DAC_Ki',accINFILE(1),CntrPar%DAC_Ki,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'dac_maxval',accINFILE(1),CntrPar%dac_maxval,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_threshold',accINFILE(1),CntrPar%dac_bb_threshold,ErrVar) ! Gerrit
+        CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_startDelay',accINFILE(1),CntrPar%dac_bb_startDelay,ErrVar) ! Gerrit
+        CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_depTime',accINFILE(1),CntrPar%dac_bb_depTime,ErrVar) ! Gerrit
+        CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_useIDAC',accINFILE(1),CntrPar%dac_bb_useIDAC,ErrVar) ! Gerrit
         CALL ReadEmptyLine(UnControllerParameters,CurLine)
 
         !------------ Open loop input ------------
@@ -650,15 +650,15 @@ CONTAINS
             ErrVar%ErrMsg  = 'Fl_Mode must be 0, 1, or 2.'
         ENDIF
 
-        ! Flp_Mode
-        IF ((CntrPar%Flp_Mode < 0) .OR. (CntrPar%Flp_Mode > 4)) THEN
+        ! DAC_Mode
+        IF ((CntrPar%DAC_Mode < 0) .OR. (CntrPar%DAC_Mode > 5)) THEN
             ErrVar%aviFAIL = -1
-            ErrVar%ErrMsg  = 'Flp_Mode must be 0, 1, 2, or 3.'
+            ErrVar%ErrMsg  = 'DAC_Mode must be 0, 1, 2, 3, or 4.'
         ENDIF
 
-        IF ((CntrPar%IPC_ControlMode > 0) .AND. (CntrPar%Flp_Mode > 0)) THEN
+        IF ((CntrPar%IPC_ControlMode > 0) .AND. (CntrPar%DAC_Mode > 0)) THEN
             ErrVar%aviFAIL = -1
-            ErrVar%ErrMsg   = 'ROSCO does not currently support IPC_ControlMode and Flp_Mode > 0'
+            ErrVar%ErrMsg   = 'ROSCO does not currently support IPC_ControlMode and DAC_Mode > 0'
         ENDIF
         !------- FILTERS ----------------------------------------------------------
 
@@ -724,17 +724,17 @@ CONTAINS
             ENDIF
         ENDIF
 
-        IF (CntrPar%Flp_Mode > 0) THEN
-            ! F_FlpCornerFreq(1)  (frequency)
-            IF (CntrPar%F_FlpCornerFreq(1) <= 0.0) THEN
+        IF (CntrPar%DAC_Mode > 0) THEN
+            ! F_DACCornerFreq(1)  (frequency)
+            IF (CntrPar%F_DACCornerFreq(1) <= 0.0) THEN
                 ErrVar%aviFAIL = -1
-                ErrVar%ErrMsg  = 'F_FlpCornerFreq(1) must be greater than zero.'
+                ErrVar%ErrMsg  = 'F_DACCornerFreq(1) must be greater than zero.'
             ENDIF
 
-            ! F_FlpCornerFreq(2)  (damping)
-            IF (CntrPar%F_FlpCornerFreq(2) < 0.0) THEN
+            ! F_DACCornerFreq(2)  (damping)
+            IF (CntrPar%F_DACCornerFreq(2) < 0.0) THEN
                 ErrVar%aviFAIL = -1
-                ErrVar%ErrMsg  = 'F_FlpCornerFreq(2) must be greater than or equal to zero.'
+                ErrVar%ErrMsg  = 'F_DACCornerFreq(2) must be greater than or equal to zero.'
             ENDIF
         ENDIF
 

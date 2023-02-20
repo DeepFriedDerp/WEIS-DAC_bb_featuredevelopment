@@ -1,0 +1,6 @@
+# The fortran modules provided by this target.
+provides
+ aeroacoustics.mod
+ aeroacoustics_io.mod
+ aeroacoustics_types.mod
+ tno.mod

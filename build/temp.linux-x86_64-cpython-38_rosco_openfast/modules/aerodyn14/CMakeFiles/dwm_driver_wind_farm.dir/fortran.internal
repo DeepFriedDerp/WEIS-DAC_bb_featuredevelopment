@@ -1,0 +1,6 @@
+# The fortran modules provided by this target.
+provides
+ dwm_driver_wind_farm_sub.mod
+ dwm_init_data.mod
+ read_wind_farm_parameter_data.mod
+ wind_farm_geometry_data.mod

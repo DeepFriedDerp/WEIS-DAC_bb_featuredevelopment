@@ -1,0 +1,4 @@
+# The fortran modules provided by this target.
+provides
+ orcadriver_subs.mod
+ orcadriver_types.mod
