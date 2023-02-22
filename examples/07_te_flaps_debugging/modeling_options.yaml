@@ -2,10 +2,10 @@ General:
     verbosity: False  # When set to True, the code prints to screen many infos
     openfast_configuration:
         OF_run_fst: BAR10
-        OF_run_dir: temp/BAR10_BangBang_flap_01    # new flap mode results
+      #  OF_run_dir: temp/BAR10_BangBang_flap_01    # new flap mode results
       #  OF_run_dir: temp/BAR10_1              # old flap mode results
       #  OF_run_dir: temp/BAR10_AlwaysOn         # Always on results (mode 4)
-        # OF_run_dir: temp/BAR10_AlwaysOff         # Always off results (mode 4)
+        OF_run_dir: temp/BAR10_AlwaysOff         # Always off results (mode 4)
 WISDEM:
     RotorSE:
         flag: True
@@ -67,7 +67,7 @@ Level3: # Options for WEIS fidelity level 3 = nonlinear time domain
         AfCmode: 5
 
     xfoil:
-        path: /home/mertzb/Xfoil/bin/xfoil
+        path: /Users/agmotes/home/codes/bin/xfoil
 
 ROSCO:
     flag: False
@@ -83,8 +83,8 @@ ROSCO:
     #dac_bb_threshold: 99000000  #Gerrit always off
     dac_bb_threshold: 19000000 # attempting a temp switch
     #dac_bb_startDelay: 1
-    dac_bb_depTime: 1
-    #dac_bb_useIDAC: 1
+    #dac_bb_depTime: 1
+    dac_bb_useIDAC: 1
     dac_maxval: 0.1745 # 10 degrees max flap angle
     #dac_maxval: 9 #Ben: lems 9 mm
     zeta_dac: 0.7

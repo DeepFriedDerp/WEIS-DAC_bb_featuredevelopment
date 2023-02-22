@@ -574,7 +574,6 @@ CONTAINS
                 ! if using IDAC, call the bangbang subroutine to set the value of LocalVar%dac_param for each blade
                 ! otherwise, call the bangbang subroutine for blade one, and set the other blades' LocalVar%dac_param
                 !   to the first blade's result.
-                !PRINT *, 'dac_bb_depTime is :', CntrPar%dac_bb_depTime  ! debug
                 IF (CntrPar%dac_bb_useIDAC > 0) THEN
                   DO K = 1, LocalVar%NumBl
                     CALL BangBang(CntrPar, LocalVar, K)
@@ -584,34 +583,7 @@ CONTAINS
                   LocalVar%dac_param(2) = LocalVar%dac_param(1)
                   LocalVar%dac_param(3) = LocalVar%dac_param(1)
                 END IF
-                ! Using a single root bending moment threshold to cycle dac device
-                !PRINT *, 'rootMOOPF: ', LocalVar%rootMOOPF ! debug
-                !DAC_UseTipDefl_Threshold_Flag = 0
-                !
-                ! Set up the signal to compare to the actuation threshold
-                !IF (DAC_UseTipDefl_Threshold_Flag > 0) THEN
-                !    !DAC_Signals2Compare2 = CntrPar%TipDyb !Gerrit, need to find out if/where tip defl is
-                !ELSE
-                !    DAC_Signals2Compare2 = LocalVar%rootMOOPF
-                !ENDIF
-                !
-                !IF (DAC_Signals2Compare2(1) >= CntrPar%dac_bb_threshold) THEN
-                !    !PRINT *, 'DAC on at: ', LocalVar%dac_param ! debug
-                !    !LocalVar%dac_param(1) = CntrPar%dac_maxval
-                !    !LocalVar%dac_param(2) = CntrPar%dac_maxval
-                !    !LocalVar%dac_param(3) = CntrPar%dac_maxval
-                !    LocalVar%dac_param(1) = CntrPar%dac_maxval
-                !    LocalVar%dac_param(2) = CntrPar%dac_maxval
-                !    LocalVar%dac_param(3) = CntrPar%dac_maxval
-                !ELSE
-                !    LocalVar%dac_param(1) = 0
-                !    LocalVar%dac_param(2) = 0
-                !    LocalVar%dac_param(3) = 0
-                !ENDIF
               ENDIF
-            !ELSEIF (CntrPar%DAC_Mode == 5) THEN
-              !DO K = 1,LocalVar%NumBl
-
             ENDIF
 
             ! Send to AVRSwap
@@ -640,7 +612,7 @@ CONTAINS
         !Input Variables
         TYPE(ControlParameters), INTENT(INOUT)    :: CntrPar
         TYPE(LocalVariables), INTENT(INOUT)       :: LocalVar
-        TYPE(INTEGER), INTENT(IN)                   :: bladeNum
+        TYPE(INTEGER), INTENT(IN)              :: bladeNum
 
         !Internal Variables
         REAL(DbKi)                        :: currentTime
@@ -655,6 +627,7 @@ CONTAINS
         LOGICAL                           :: time2Actuate = .FALSE.
         LOGICAL                           :: time2Deactuate = .FALSE.
         INTEGER(IntKi)                    :: DAC_UseTipDefl_Threshold_Flag
+        INTEGER(IntKi)                    :: local_bladeNum
 
         !Begin the actual SUBROUTINE
 
@@ -667,18 +640,19 @@ CONTAINS
         ELSE
             ! If bladeNum is set to 0, then group control is active, and an average of the root bending moments is used as the measurement
             IF (bladeNum == 0) THEN
-                DAC_Signal2Compare2 = MAXVAL(ABS(LocalVar%rootMOOPF))
-                bladeNum = 1 ! Set bladeNum to 1 in order to get the logical variables to work below
+                DAC_Signal2Compare2 = MAXVAL(LocalVar%rootMOOPF)
+                local_bladeNum = 1 ! Set bladeNum to 1 in order to get the logical variables to work below
             ELSE
                 DAC_Signal2Compare2 = LocalVar%rootMOOPF(bladeNum)
+                local_bladeNum = bladeNum
             ENDIF
         ENDIF
 
         ! Determine what the local_DAC_MaxVal should be based on the DAC_Model flag
-        IF (CntrPar.DAC_Model == 1) THEN
-            local_DAC_MaxVal = -CntrPar.dac_maxval
+        IF (CntrPar%DAC_Model == 1) THEN
+            local_DAC_MaxVal = -CntrPar%dac_maxval
         ELSE
-            local_DAC_MaxVal = CntrPar.dac_maxval
+            local_DAC_MaxVal = CntrPar%dac_maxval
         ENDIF
 
         !Grab the current sim time
@@ -688,41 +662,23 @@ CONTAINS
         thresholdExceeded = (DAC_Signal2Compare2 > CntrPar%dac_bb_threshold)
         belowThreshold = .NOT. thresholdExceeded
         dacNOTDeployed = .NOT. dacIsDeployed
-        deploymentTimeElapsed = (currentTime > (lastActuationTime(bladeNum) + CntrPar%dac_bb_depTime))
-        time2Deactuate = (deploymentTimeElapsed) .AND. (belowThreshold) .AND. (dacIsDeployed(bladeNum))
-        time2Actuate = (thresholdExceeded) .AND. (dacNOTDeployed(bladeNum))
-
-        !Debug
-        !IF (dacIsDeployed(bladeNum)) THEN
-        !  PRINT *, '********************* NEW CALL *********************'
-        !  PRINT *, 'currentTime =', currentTime
-        !  PRINT *, 'DAC_Signal2Compare2 =', DAC_Signal2Compare2
-        !  PRINT *, 'dac_bb_threshold =', CntrPar%dac_bb_threshold
-        !  PRINT *, 'thresholdExceeded =', thresholdExceeded
-        !  PRINT *, 'belowThreshold =', belowThreshold
-        !  PRINT *, 'dacNOTDeployed =', dacNOTDeployed(bladeNum)
-        !  PRINT *, 'lastActuationTime =', lastActuationTime(bladeNum)
-        !  PRINT *, 'dac_bb_depTime =', CntrPar%dac_bb_depTime
-        !  PRINT *, 'deploymentTimeElapsed =', deploymentTimeElapsed
-        !  PRINT *, 'time2Deactuate =', time2Deactuate
-        !  PRINT *, 'time2Actuate =', time2Actuate
-        !ENDIF
-
+        deploymentTimeElapsed = (currentTime > (lastActuationTime(local_bladeNum) + CntrPar%dac_bb_depTime))
+        time2Deactuate = (deploymentTimeElapsed) .AND. (belowThreshold) .AND. (dacIsDeployed(local_bladeNum))
+        time2Actuate = (thresholdExceeded) .AND. (dacNOTDeployed(local_bladeNum))
 
         !Using the simplified logicals, actuate or deactuate the DACS
         IF (time2Actuate) THEN
-          LocalVar%dac_param(bladeNum) = local_DAC_MaxVal
-          dacIsDeployed(bladeNum) = .TRUE.
-          lastActuationTime(bladeNum) = currentTime
+          LocalVar%dac_param(local_bladeNum) = local_DAC_MaxVal
+          dacIsDeployed(local_bladeNum) = .TRUE.
+          lastActuationTime(local_bladeNum) = currentTime
         ELSEIF (time2Deactuate) THEN
-          LocalVar%dac_param(bladeNum) = 0
-          dacIsDeployed(bladeNum) = .FALSE.
+          LocalVar%dac_param(local_bladeNum) = 0
+          dacIsDeployed(local_bladeNum) = .FALSE.
         ELSE
-          LocalVar%dac_param(bladeNum) = LocalVar%dac_param(bladeNum)
-        !  dacIsDeployed(bladeNum) = .FALSE.
+          LocalVar%dac_param(local_bladeNum) = LocalVar%dac_param(local_bladeNum)
+        !  dacIsDeployed(local_bladeNum) = .FALSE.
         ENDIF
 
     END SUBROUTINE BangBang
-
 
 END MODULE Controllers

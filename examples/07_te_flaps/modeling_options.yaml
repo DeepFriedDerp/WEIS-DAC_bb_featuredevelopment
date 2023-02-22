@@ -80,7 +80,6 @@ ROSCO:
     #dac_bb_startDelay: 1       # Sets a delay time (s) in the sim before the bang-bang controller begins running, defaults to 0 if not specified
     #dac_bb_depTime: 1          # Sets a minimum deployment time for the flaps (once deployed) in bang-bang control mode. Defaults to 0 if not specified
     #dac_bb_useIDAC: 1          # A flag for indicating if individual blade DAC bang bang controls are being used (1), or group DAC bang-bang controls are being used (0). Defaults to 0 if not specified 
-    #dac_bb_les: 0              # A flag for indicating whether trailing edge flaps (0) or leading edge spoilers (1) are being used. Defaults to 0 if not specified
     dac_maxval: 0.1745          # 10 degrees max flap angle, note that this is limited to the maximum angle allowed by the settings in BAR_USC_flaps.yaml
     zeta_dac: 0.7
     omega_dac: 2.63
