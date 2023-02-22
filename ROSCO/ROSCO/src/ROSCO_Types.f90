@@ -98,6 +98,7 @@ TYPE, PUBLIC :: ControlParameters
     REAL(DbKi)                    :: dac_param                   ! Fixed DAC parameter value (units of DAC device)
     REAL(DbKi)                    :: DAC_Kp                      ! PI DAC control proportional gain
     REAL(DbKi)                    :: DAC_Ki                      ! PI DAC control integral gain
+    INTEGER(IntKi)                :: DAC_Model                   ! Flag for designating the type of DAC being used (trailing edge flaps or other, like leading edge microspoilers)
     REAL(DbKi)                    :: dac_maxval                  ! Maximum (and minimum) DAC parameter value
     REAL(DbKi)                    :: dac_bb_threshold            ! Threshold for dac mode = 4
     Real(DbKi)                    :: dac_bb_startDelay           ! Time into sim where DAC bang-bang controller activates (DAC_Mode = 4)

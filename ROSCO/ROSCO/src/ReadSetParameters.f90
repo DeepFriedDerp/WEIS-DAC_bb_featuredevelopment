@@ -373,6 +373,7 @@ CONTAINS
         CALL ParseInput(UnControllerParameters,CurLine,'dac_param',accINFILE(1),CntrPar%dac_param,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'DAC_Kp',accINFILE(1),CntrPar%DAC_Kp,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'DAC_Ki',accINFILE(1),CntrPar%DAC_Ki,ErrVar)
+        CALL ParseInput(UnControllerParameters,CurLine,'DAC_Model',accINFILE(1),CntrPar%dac_maxval,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'dac_maxval',accINFILE(1),CntrPar%dac_maxval,ErrVar)
         CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_threshold',accINFILE(1),CntrPar%dac_bb_threshold,ErrVar) ! Gerrit
         CALL ParseInput(UnControllerParameters,CurLine,'dac_bb_startDelay',accINFILE(1),CntrPar%dac_bb_startDelay,ErrVar) ! Gerrit

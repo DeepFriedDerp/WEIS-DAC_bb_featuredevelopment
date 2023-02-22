@@ -333,6 +333,12 @@ properties:
                 minimum: 0
                 description: DAC controller time constant for integral gain
                 unit: s
+            DAC_Model:
+                type: number
+                minimum: 1
+                maximum: 2
+                default: 1
+                description: DAC controller type flag (trailing edge flaps or other, like leading edge microspoilers)
             dac_bb_threshold: # Gerrit
                 type: number
                 minimum: -99999999
@@ -842,6 +848,9 @@ properties:
                     DAC_Ki:
                         type: number
                         description: DAC displacement integral gain for DAC control
+                    DAC_Model:         #Gerrit
+                        type: number
+                        description: DAC type flag (trailing edge flaps vs leading edge spoilers, etc.)
                     dac_maxval:
                         type: number
                         description: Maximum (and minimum) DAC parameter value

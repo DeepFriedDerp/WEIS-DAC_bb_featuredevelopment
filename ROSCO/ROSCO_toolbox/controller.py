@@ -85,6 +85,7 @@ class Controller():
         self.sd_maxpit          = controller_params['sd_maxpit']
         self.WS_GS_n            = controller_params['WS_GS_n']
         self.PC_GS_n            = controller_params['PC_GS_n']
+        self.DAC_Model          = controller_params['DAC_Model']
         self.dac_maxval         = controller_params['dac_maxval']
         self.dac_bb_startDelay  = controller_params['dac_bb_startDelay']
         self.dac_bb_threshold   = controller_params['dac_bb_threshold']
