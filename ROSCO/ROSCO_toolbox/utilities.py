@@ -189,6 +189,7 @@ def write_DISCON(turbine, controller, param_file='DISCON.IN', txt_filename='Cp_C
     file.write('{:<014.5f}      ! dac_param             - Initial or steady state DAC parameter value [units based on dac device]\n'.format(rosco_vt['dac_param']))
     file.write('{:<014.8e}      ! DAC_Kp                - Blade root bending moment proportional gain for DAC control [s]\n'.format(rosco_vt['DAC_Kp']))
     file.write('{:<014.8e}      ! DAC_Ki                - DAC parameter integral gain for DAC control [-]\n'.format(rosco_vt['DAC_Ki']))
+    file.write('{:<11d}         ! DAC_Model             - DAC type flag (1 for tefs, 0 for other like les)\n'.format(rosco_vt['DAC_Model'])) # Gerrit
     file.write('{:<014.5f}      ! dac_maxval            - Maximum (and minimum) DAC parameter value [rad]\n'.format(rosco_vt['dac_maxval']))
     file.write('{:<014.5f}      ! dac_bb_threshold      - DAC actuation threshold in bang-bang mode\n'.format(rosco_vt['dac_bb_threshold'])) # Gerrit
     file.write('{:<014.5f}      ! dac_bb_startDelay     - DAC control initial delay in bang-bang mode\n'.format(rosco_vt['dac_bb_startDelay'])) # Gerrit
@@ -496,6 +497,7 @@ def DISCON_dict(turbine, controller, txt_filename=None):
     DISCON_dict['dac_param']            = controller.dac_param
     DISCON_dict['DAC_Kp']               = controller.Kp_flap[-1]
     DISCON_dict['DAC_Ki']               = controller.Ki_flap[-1]
+    DISCON_dict['DAC_Model']            = controller.DAC_Model # Gerrit
     DISCON_dict['dac_maxval']           = controller.dac_maxval
     DISCON_dict['dac_bb_threshold']     = controller.dac_bb_threshold # Gerrit
     DISCON_dict['dac_bb_startDelay']    = controller.dac_bb_startDelay # Gerrit

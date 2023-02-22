@@ -580,7 +580,7 @@ CONTAINS
                     CALL BangBang(CntrPar, LocalVar, K)
                   END DO
                 ELSE
-                  CALL BangBang(CntrPar, LocalVar, 1)
+                  CALL BangBang(CntrPar, LocalVar, 0)
                   LocalVar%dac_param(2) = LocalVar%dac_param(1)
                   LocalVar%dac_param(3) = LocalVar%dac_param(1)
                 END IF
@@ -645,6 +645,7 @@ CONTAINS
         !Internal Variables
         REAL(DbKi)                        :: currentTime
         REAL(DbKi)                        :: DAC_Signal2Compare2
+        REAL(DbKi)                        :: local_DAC_Maxval
         REAL(DbKi), DIMENSION(5), SAVE    :: lastActuationTime = (/ 0.0, 0.0, 0.0, 0.0, 0.0 /)
         LOGICAL, DIMENSION(5), SAVE       :: dacIsDeployed = (/ .FALSE., .FALSE., .FALSE., .FALSE., .FALSE. /)
         LOGICAL, DIMENSION(5), SAVE       :: dacNOTDeployed = (/ .TRUE., .TRUE., .TRUE., .TRUE., .TRUE. /)
@@ -664,7 +665,20 @@ CONTAINS
         IF (DAC_UseTipDefl_Threshold_Flag > 0) THEN
             !DAC_Signals2Compare2 = CntrPar%TipDyb !Gerrit, need to find out if/where tip defl is
         ELSE
-            DAC_Signal2Compare2 = LocalVar%rootMOOPF(bladeNum)
+            ! If bladeNum is set to 0, then group control is active, and an average of the root bending moments is used as the measurement
+            IF (bladeNum == 0) THEN
+                DAC_Signal2Compare2 = MAXVAL(ABS(LocalVar%rootMOOPF))
+                bladeNum = 1 ! Set bladeNum to 1 in order to get the logical variables to work below
+            ELSE
+                DAC_Signal2Compare2 = LocalVar%rootMOOPF(bladeNum)
+            ENDIF
+        ENDIF
+
+        ! Determine what the local_DAC_MaxVal should be based on the DAC_Model flag
+        IF (CntrPar.DAC_Model == 1) THEN
+            local_DAC_MaxVal = -CntrPar.dac_maxval
+        ELSE
+            local_DAC_MaxVal = CntrPar.dac_maxval
         ENDIF
 
         !Grab the current sim time
@@ -697,7 +711,7 @@ CONTAINS
 
         !Using the simplified logicals, actuate or deactuate the DACS
         IF (time2Actuate) THEN
-          LocalVar%dac_param(bladeNum) = CntrPar%dac_maxval
+          LocalVar%dac_param(bladeNum) = local_DAC_MaxVal
           dacIsDeployed(bladeNum) = .TRUE.
           lastActuationTime(bladeNum) = currentTime
         ELSEIF (time2Deactuate) THEN
