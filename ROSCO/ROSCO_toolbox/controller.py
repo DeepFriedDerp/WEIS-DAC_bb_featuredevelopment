@@ -62,7 +62,7 @@ class Controller():
         self.SD_Mode            = controller_params['SD_Mode']
         self.Fl_Mode            = controller_params['Fl_Mode']
         self.TD_Mode            = controller_params['TD_Mode']
-        self.Flp_Mode           = controller_params['Flp_Mode']
+        self.DAC_Mode           = controller_params['DAC_Mode']
         self.PA_Mode           = controller_params['PA_Mode']
         self.Ext_Mode           = controller_params['Ext_Mode']
         self.ZMQ_Mode           = controller_params['ZMQ_Mode']
@@ -85,10 +85,12 @@ class Controller():
         self.sd_maxpit          = controller_params['sd_maxpit']
         self.WS_GS_n            = controller_params['WS_GS_n']
         self.PC_GS_n            = controller_params['PC_GS_n']
-        self.flp_maxpit         = controller_params['flp_maxpit']
-        self.flp_bb_startDelay  = controller_params['flp_bb_startDelay']
-        self.flp_bb_depTime     = controller_params['flp_bb_depTime']
-        self.flp_bb_useIDAC     = controller_params['flp_bb_useIDAC']
+        self.DAC_Model          = controller_params['DAC_Model']
+        self.dac_maxval         = controller_params['dac_maxval']
+        self.dac_bb_startDelay  = controller_params['dac_bb_startDelay']
+        self.dac_bb_threshold   = controller_params['dac_bb_threshold']
+        self.dac_bb_depTime     = controller_params['dac_bb_depTime']
+        self.dac_bb_useIDAC     = controller_params['dac_bb_useIDAC']
         self.Kp_ipc1p           = controller_params['IPC_Kp1p']
         self.Ki_ipc1p           = controller_params['IPC_Ki1p']
         self.Kp_ipc2p           = controller_params['IPC_Kp2p']
@@ -96,20 +98,20 @@ class Controller():
         self.IPC_Vramp          = controller_params['IPC_Vramp']
 
         #  Optional parameters without defaults
-        if self.Flp_Mode > 0:
+        if self.DAC_Mode > 0:
             try:
-                self.flp_kp_norm = controller_params['flp_kp_norm']
-                self.flp_tau     = controller_params['flp_tau']
+                self.dac_kp_norm = controller_params['dac_kp_norm']
+                self.dac_tau     = controller_params['dac_tau']
             except:
                 raise Exception(
-                    'ROSCO_toolbox:controller: flp_kp_norm and flp_tau must be set if Flp_Mode > 0')
+                    'ROSCO_toolbox:controller: dac_kp_norm and dac_tau must be set if DAC_Mode > 0')
 
-        if self.Flp_Mode == 4: # Gerrit
+        if self.DAC_Mode == 4: # Gerrit
             try:
-                self.flp_bb_threshold = controller_params['flp_bb_threshold']
+                self.dac_bb_threshold = controller_params['dac_bb_threshold']
             except:
                 raise Exception(
-                    'Flp_Mode = 4 and rootMOOPF_Threshold not defined, please fix this in modeling options')
+                    'DAC_Mode = 4 and rootMOOPF_Threshold not defined, please fix this in modeling options')
 
         if self.Fl_Mode > 0:
             try:
@@ -393,19 +395,19 @@ class Controller():
         else:
             self.Kp_float = 0.0
 
-        # Flap actuation
-        if self.Flp_Mode >= 1:
-            self.flp_angle = 0.0
+        # DAC actuation
+        if self.DAC_Mode >= 1:
+            self.dac_param = 0.0
             try:
-                self.tune_flap_controller(turbine)
+                self.tune_dac_controller(turbine)
             except AttributeError:
-                print('ERROR: If Flp_Mode > 0, you need to have blade information loaded in the turbine object.')
+                print('ERROR: If DAC_Mode > 0, you need to have blade information loaded in the turbine object.')
                 raise
             except UnboundLocalError:
-                print('ERROR: You are attempting to tune a flap controller for a blade without flaps!')
+                print('ERROR: You are attempting to tune a dac controller for a blade without a dac device specified!')
                 raise
         else:
-            self.flp_angle = 0.0
+            self.dac_param = 0.0
             self.Ki_flap = np.array([0.0])
             self.Kp_flap = np.array([0.0])
 
@@ -416,7 +418,7 @@ class Controller():
         if 'f_lpf_cornerfreq' in self.controller_params['filter_params']:
             self.f_lpf_cornerfreq = self.controller_params['filter_params']['f_lpf_cornerfreq']
 
-    def tune_flap_controller(self,turbine):
+    def tune_dac_controller(self,turbine):
         '''
         Tune controller for distributed aerodynamic control
 
@@ -458,27 +460,27 @@ class Controller():
             # assume airfoil section as AOA of zero for slope calculations
             a0_ind = section[0]['Alpha'].index(np.min(np.abs(section[0]['Alpha'])))
             # Coefficients
-            #  - If the flap exists in this blade section, define Cx-plus,-minus,-neutral(0)
-            #  - IF teh flap does not exist in this blade section, Cx matrix is all the same value
-            if section[0]['NumTabs'] == 3:  # sections with 3 flaps
+            #  - If the DAC device exists in this blade section, define Cx-plus,-minus,-neutral(0)
+            #  - IF the DAC device does not exist in this blade section, Cx matrix is all the same value
+            if section[0]['NumTabs'] == 3:  # sections with 3 DAC devices
                 Clm[i,] = section[0]['Cl'][a0_ind]
                 Cdm[i,] = section[0]['Cd'][a0_ind]
                 Cl0[i,] = section[1]['Cl'][a0_ind]
                 Cd0[i,] = section[1]['Cd'][a0_ind]
                 Clp[i,] = section[2]['Cl'][a0_ind]
                 Cdp[i,] = section[2]['Cd'][a0_ind]
-                Ctrl_flp = float(section[2]['Ctrl'])
-            else:                           # sections without 3 flaps
+                Ctrl_dac = float(section[2]['Ctrl'])
+            else:                           # sections without 3 dac devices
                 Cl0[i,] = Clp[i,] = Clm[i,] = section[0]['Cl'][a0_ind]
                 Cd0[i,] = Cdp[i,] = Cdm[i,] = section[0]['Cd'][a0_ind]
                 Ctrl = float(section[0]['Ctrl'])
 
-        # Find lift and drag coefficient slopes w.r.t. flap angle
-        Kcl = (Clp - Cl0)/( (Ctrl_flp-Ctrl)*deg2rad )
-        Kcd = (Cdp - Cd0)/( (Ctrl_flp-Ctrl)*deg2rad )
+        # Find lift and drag coefficient slopes w.r.t. dac_parameter values
+        Kcl = (Clp - Cl0)/( (Ctrl_dac-Ctrl) ) #TODO bem: changed from Ctrl being in degrees to it being in rad
+        Kcd = (Cdp - Cd0)/( (Ctrl_dac-Ctrl) )
 
         # Find integrated constants
-        self.kappa = np.zeros(len(v_rel))  # "flap efficacy term"
+        self.kappa = np.zeros(len(v_rel))  # "dac efficacy term"
         C1 = np.zeros(len(v_rel))
         C2 = np.zeros(len(v_rel))
         for i, (v_sec,phi) in enumerate(zip(v_rel, phi_vec)):
@@ -487,10 +489,10 @@ class Controller():
             self.kappa[i]=C1[i]+C2[i]
 
         # PI Gains
-        if (self.flp_kp_norm == 0 or self.flp_tau == 0) or (not self.flp_kp_norm or not self.flp_tau):
-            raise ValueError('flp_kp_norm and flp_tau must be nonzero for Flp_Mode >= 1')
-        self.Kp_flap = self.flp_kp_norm / self.kappa
-        self.Ki_flap = self.flp_kp_norm / self.kappa / self.flp_tau
+        if (self.dac_kp_norm == 0 or self.dac_tau == 0) or (not self.dac_kp_norm or not self.dac_tau):
+            raise ValueError('dac_kp_norm and dac_tau must be nonzero for DAC_Mode >= 1')
+        self.Kp_flap = self.dac_kp_norm / self.kappa
+        self.Ki_flap = self.dac_kp_norm / self.kappa / self.dac_tau
 
 class ControllerBlocks():
     '''

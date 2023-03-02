@@ -78,7 +78,7 @@ def write_DISCON(turbine, controller, param_file='DISCON.IN', txt_filename='Cp_C
     file.write('{0:<12d}        ! SD_Mode           - Shutdown mode {{0: no shutdown procedure, 1: pitch to max pitch at shutdown}}\n'.format(int(rosco_vt['SD_Mode'])))
     file.write('{0:<12d}        ! Fl_Mode           - Floating specific feedback mode {{0: no nacelle velocity feedback, 1: feed back translational velocity, 2: feed back rotational veloicty}}\n'.format(int(rosco_vt['Fl_Mode'])))
     file.write('{0:<12d}        ! TD_Mode           - Tower damper mode {{0: no tower damper, 1: feed back translational nacelle accelleration to pitch angle}}\n'.format(int(rosco_vt['TD_Mode'])))
-    file.write('{0:<12d}        ! Flp_Mode          - Flap control mode {{0: no flap control, 1: steady state flap angle, 2: Proportional flap control, 2: Cyclic (1P) flap control}}\n'.format(int(rosco_vt['Flp_Mode'])))
+    file.write('{0:<12d}        ! DAC_Mode          - DAC control mode {{0: no DAC control, 1: steady state DAC parameter value, 2: Proportional DAC control, 3: Cyclic (1P) DAC control, 4: Bang-Bang DAC control}}\n'.format(int(rosco_vt['DAC_Mode'])))
     file.write('{0:<12d}        ! OL_Mode           - Open loop control mode {{0: no open loop control, 1: open loop control vs. time}}\n'.format(int(rosco_vt['OL_Mode'])))
     file.write('{0:<12d}        ! PA_Mode           - Pitch actuator mode {{0 - not used, 1 - first order filter, 2 - second order filter}}\n'.format(int(rosco_vt['PA_Mode'])))
     file.write('{0:<12d}        ! Ext_Mode          - External control mode {{0 - not used, 1 - call external dynamic library}}\n'.format(int(rosco_vt['Ext_Mode'])))
@@ -95,7 +95,7 @@ def write_DISCON(turbine, controller, param_file='DISCON.IN', txt_filename='Cp_C
     file.write('{:<13.5f}       ! F_YawErr          - Low pass filter corner frequency for yaw controller [rad/s].\n'.format(rosco_vt['F_YawErr']))
     file.write('{}! F_FlCornerFreq    - Natural frequency and damping in the second order low pass filter of the tower-top fore-aft motion for floating feedback control [rad/s, -].\n'.format(''.join('{:<4.6f}  '.format(rosco_vt['F_FlCornerFreq'][i]) for i in range(len(rosco_vt['F_FlCornerFreq'])))))
     file.write('{:<13.5f}       ! F_FlHighPassFreq    - Natural frequency of first-order high-pass filter for nacelle fore-aft motion [rad/s].\n'.format(rosco_vt['F_FlHighPassFreq']))
-    file.write('{}! F_FlpCornerFreq   - Corner frequency and damping in the second order low pass filter of the blade root bending moment for flap control [rad/s, -].\n'.format(''.join('{:<4.6f}  '.format(rosco_vt['F_FlpCornerFreq'][i]) for i in range(len(rosco_vt['F_FlpCornerFreq'])))))
+    file.write('{}! F_DACCornerFreq   - Corner frequency and damping in the second order low pass filter of the blade root bending moment for DAC control [rad/s, -].\n'.format(''.join('{:<4.6f}  '.format(rosco_vt['F_DACCornerFreq'][i]) for i in range(len(rosco_vt['F_DACCornerFreq'])))))
 
     file.write('\n')
     file.write('!------- BLADE PITCH CONTROL ----------------------------------------------\n')
@@ -185,15 +185,16 @@ def write_DISCON(turbine, controller, param_file='DISCON.IN', txt_filename='Cp_C
         floatstr = 'velocity'
     file.write('{:<014.5f}      ! Fl_Kp             - Nacelle {} proportional feedback gain [s]\n'.format(rosco_vt['Fl_Kp'], floatstr))
     file.write('\n')
-    file.write('!------- FLAP ACTUATION -----------------------------------------------------\n')
-    file.write('{:<014.5f}      ! Flp_Angle             - Initial or steady state flap angle [rad]\n'.format(rosco_vt['Flp_Angle']))
-    file.write('{:<014.8e}      ! Flp_Kp                - Blade root bending moment proportional gain for flap control [s]\n'.format(rosco_vt['Flp_Kp']))
-    file.write('{:<014.8e}      ! Flp_Ki                - Flap displacement integral gain for flap control [-]\n'.format(rosco_vt['Flp_Ki']))
-    file.write('{:<014.5f}      ! Flp_MaxPit            - Maximum (and minimum) flap pitch angle [rad]\n'.format(rosco_vt['Flp_MaxPit']))
-    file.write('{:<014.5f}      ! flp_bb_threshold      - flap actuation threshold in bang-bang mode\n'.format(rosco_vt['flp_bb_threshold'])) # Gerrit
-    file.write('{:<014.5f}      ! flp_bb_startDelay     - flap control initial delay in bang-bang mode\n'.format(rosco_vt['flp_bb_startDelay'])) # Gerrit
-    file.write('{:<014.5f}      ! flp_bb_depTime        - flap control minimum deployment time in bang-bang mode\n'.format(rosco_vt['flp_bb_depTime'])) # Gerrit
-    file.write('{:<11d}         ! flp_bb_useIDAC        - A flag used to determine IDAC or general DAC in bang-bang mode\n'.format(rosco_vt['flp_bb_useIDAC'])) # Gerrit
+    file.write('!------- DAC ACTUATION -----------------------------------------------------\n')
+    file.write('{:<014.5f}      ! dac_param             - Initial or steady state DAC parameter value [units based on dac device]\n'.format(rosco_vt['dac_param']))
+    file.write('{:<014.8e}      ! DAC_Kp                - Blade root bending moment proportional gain for DAC control [s]\n'.format(rosco_vt['DAC_Kp']))
+    file.write('{:<014.8e}      ! DAC_Ki                - DAC parameter integral gain for DAC control [-]\n'.format(rosco_vt['DAC_Ki']))
+    file.write('{:<11d}         ! DAC_Model             - DAC type flag (1 for tefs, 0 for other like les)\n'.format(rosco_vt['DAC_Model'])) # Gerrit
+    file.write('{:<014.5f}      ! dac_maxval            - Maximum (and minimum) DAC parameter value [rad]\n'.format(rosco_vt['dac_maxval']))
+    file.write('{:<014.5f}      ! dac_bb_threshold      - DAC actuation threshold in bang-bang mode\n'.format(rosco_vt['dac_bb_threshold'])) # Gerrit
+    file.write('{:<014.5f}      ! dac_bb_startDelay     - DAC control initial delay in bang-bang mode\n'.format(rosco_vt['dac_bb_startDelay'])) # Gerrit
+    file.write('{:<014.5f}      ! dac_bb_depTime        - DAC control minimum deployment time in bang-bang mode\n'.format(rosco_vt['dac_bb_depTime'])) # Gerrit
+    file.write('{:<11d}         ! dac_bb_useIDAC        - A flag used to determine IDAC or general DAC in bang-bang mode\n'.format(rosco_vt['dac_bb_useIDAC'])) # Gerrit
     file.write('\n')
     file.write('!------- Open Loop Control -----------------------------------------------------\n')
     file.write('"{}"            ! OL_Filename       - Input file with open loop timeseries (absolute path or relative to this file)\n'.format(rosco_vt['OL_Filename']))
@@ -395,7 +396,7 @@ def DISCON_dict(turbine, controller, txt_filename=None):
     DISCON_dict['SD_Mode']          = int(controller.SD_Mode)
     DISCON_dict['Fl_Mode']          = int(controller.Fl_Mode)
     DISCON_dict['TD_Mode']          = int(controller.TD_Mode)
-    DISCON_dict['Flp_Mode']         = int(controller.Flp_Mode)
+    DISCON_dict['DAC_Mode']         = int(controller.DAC_Mode)
     DISCON_dict['OL_Mode']          = int(controller.OL_Mode)
     DISCON_dict['PA_Mode']          = int(controller.PA_Mode)
     DISCON_dict['Ext_Mode']         = int(controller.Ext_Mode)
@@ -403,7 +404,7 @@ def DISCON_dict(turbine, controller, txt_filename=None):
     # ------- FILTERS -------
     DISCON_dict['F_LPFCornerFreq']	    = turbine.bld_edgewise_freq * 1/4
     DISCON_dict['F_LPFDamping']		    = controller.F_LPFDamping
-    if controller.Flp_Mode > 0:
+    if controller.DAC_Mode > 0:
         DISCON_dict['F_NotchCornerFreq'] = turbine.bld_flapwise_freq
         DISCON_dict['F_NotchBetaNumDen'] = [0.0, 0.5]
     else:
@@ -413,7 +414,7 @@ def DISCON_dict(turbine, controller, txt_filename=None):
     DISCON_dict['F_SSCornerFreq'] = controller.f_ss_cornerfreq
     DISCON_dict['F_FlHighPassFreq'] = controller.f_fl_highpassfreq
     DISCON_dict['F_FlCornerFreq'] = [controller.ptfm_freq, 1.0]
-    DISCON_dict['F_FlpCornerFreq'] = [turbine.bld_flapwise_freq*3, 1.0]
+    DISCON_dict['F_DACCornerFreq'] = [turbine.bld_flapwise_freq*3, 1.0]
     DISCON_dict['F_WECornerFreq']       = controller.f_we_cornerfreq
     DISCON_dict['F_SSCornerFreq']       = controller.f_ss_cornerfreq
     DISCON_dict['F_YawErr']             = controller.f_yawerr
@@ -492,15 +493,16 @@ def DISCON_dict(turbine, controller, txt_filename=None):
     DISCON_dict['SD_CornerFreq']    = controller.f_sd_cornerfreq
     # ------- Floating -------
     DISCON_dict['Fl_Kp']            = controller.Kp_float
-    # ------- FLAP ACTUATION -------
-    DISCON_dict['Flp_Angle']            = controller.flp_angle
-    DISCON_dict['Flp_Kp']               = controller.Kp_flap[-1]
-    DISCON_dict['Flp_Ki']               = controller.Ki_flap[-1]
-    DISCON_dict['Flp_MaxPit']           = controller.flp_maxpit
-    DISCON_dict['flp_bb_threshold']     = controller.flp_bb_threshold # Gerrit
-    DISCON_dict['flp_bb_startDelay']    = controller.flp_bb_startDelay # Gerrit
-    DISCON_dict['flp_bb_depTime']       = controller.flp_bb_depTime # Gerrit
-    DISCON_dict['flp_bb_useIDAC']       = controller.flp_bb_useIDAC # Gerrit
+    # ------- DAC ACTUATION -------
+    DISCON_dict['dac_param']            = controller.dac_param
+    DISCON_dict['DAC_Kp']               = controller.Kp_flap[-1]
+    DISCON_dict['DAC_Ki']               = controller.Ki_flap[-1]
+    DISCON_dict['DAC_Model']            = controller.DAC_Model # Gerrit
+    DISCON_dict['dac_maxval']           = controller.dac_maxval
+    DISCON_dict['dac_bb_threshold']     = controller.dac_bb_threshold # Gerrit
+    DISCON_dict['dac_bb_startDelay']    = controller.dac_bb_startDelay # Gerrit
+    DISCON_dict['dac_bb_depTime']       = controller.dac_bb_depTime # Gerrit
+    DISCON_dict['dac_bb_useIDAC']       = controller.dac_bb_useIDAC # Gerrit
     # ------- Open Loop Control -------
     DISCON_dict['OL_Filename']     = controller.OL_Filename
     DISCON_dict['Ind_Breakpoint']  = controller.OL_Ind_Breakpoint

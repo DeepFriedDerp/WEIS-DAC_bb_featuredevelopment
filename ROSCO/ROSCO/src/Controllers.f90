@@ -505,7 +505,7 @@ CONTAINS
 
     END FUNCTION FloatingFeedback
 !-------------------------------------------------------------------------------------------------------------------------------
-    SUBROUTINE FlapControl(avrSWAP, CntrPar, LocalVar, objInst)
+    SUBROUTINE DACControl(avrSWAP, CntrPar, LocalVar, objInst)
         ! Yaw rate controller
         !       Y_ControlMode = 0, No yaw control
         !       Y_ControlMode = 1, Simple yaw rate control using yaw drive
@@ -519,132 +519,105 @@ CONTAINS
         TYPE(ObjectInstances), INTENT(INOUT)      :: objInst
         ! Internal Variables
         INTEGER(IntKi)              :: K
-        !INTEGER(IntKi)              :: Flp_UseTipDefl_Threshold_Flag
-        !REAL(DbKi)                  :: Flp_Signals2Compare2(3)
+        !INTEGER(IntKi)              :: DAC_UseTipDefl_Threshold_Flag
+        !REAL(DbKi)                  :: DAC_Signals2Compare2(3)
         REAL(DbKi)                  :: RootMyb_Vel(3)
         REAL(DbKi)                  :: RootMyb_VelErr(3)
         REAL(DbKi)                  :: axisTilt_1P, axisYaw_1P    ! Direct axis and quadrature axis outputted by Coleman transform, 1P
-        REAL(DbKi)                  :: Flp_axisTilt_1P, Flp_axisYaw_1P ! Flap command in direct and quadrature axis coordinates
-        ! Flap control
-        IF (CntrPar%Flp_Mode > 0) THEN
+        REAL(DbKi)                  :: DAC_axisTilt_1P, DAC_axisYaw_1P ! DAC command in direct and quadrature axis coordinates
+        ! DAC control
+        IF (CntrPar%DAC_Mode > 0) THEN
             IF (LocalVar%iStatus == 0) THEN
                 LocalVar%RootMyb_Last(1) = 0 - LocalVar%rootMOOP(1)
                 LocalVar%RootMyb_Last(2) = 0 - LocalVar%rootMOOP(2)
                 LocalVar%RootMyb_Last(3) = 0 - LocalVar%rootMOOP(3)
-                ! Initial Flap angle
-                LocalVar%Flp_Angle(1) = CntrPar%Flp_Angle
-                LocalVar%Flp_Angle(2) = CntrPar%Flp_Angle
-                LocalVar%Flp_Angle(3) = CntrPar%Flp_Angle
+                ! Initial DAC parameter value
+                LocalVar%dac_param(1) = CntrPar%dac_param
+                LocalVar%dac_param(2) = CntrPar%dac_param
+                LocalVar%dac_param(3) = CntrPar%dac_param
                 ! Initialize controller
-                IF (CntrPar%Flp_Mode == 2) THEN
-                    LocalVar%Flp_Angle(K) = PIIController(RootMyb_VelErr(K), 0 - LocalVar%Flp_Angle(K), CntrPar%Flp_Kp, CntrPar%Flp_Ki, 0.05, -CntrPar%Flp_MaxPit , CntrPar%Flp_MaxPit , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                IF (CntrPar%DAC_Mode == 2) THEN
+                    LocalVar%dac_param(K) = PIIController(RootMyb_VelErr(K), 0 - LocalVar%dac_param(K), CntrPar%DAC_Kp, CntrPar%DAC_Ki, 0.05, -CntrPar%dac_maxval , CntrPar%dac_maxval , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
                 ENDIF
 
-            ! Steady flap angle
-            ELSEIF (CntrPar%Flp_Mode == 1) THEN
-                LocalVar%Flp_Angle(1) = LocalVar%Flp_Angle(1)
-                LocalVar%Flp_Angle(2) = LocalVar%Flp_Angle(2)
-                LocalVar%Flp_Angle(3) = LocalVar%Flp_Angle(3)
+            ! Steady DAC parameter value
+            ELSEIF (CntrPar%DAC_Mode == 1) THEN
+                LocalVar%dac_param(1) = LocalVar%dac_param(1)
+                LocalVar%dac_param(2) = LocalVar%dac_param(2)
+                LocalVar%dac_param(3) = LocalVar%dac_param(3)
 
-            ! PII flap control
-            ELSEIF (CntrPar%Flp_Mode == 2) THEN
+            ! PII DAC control
+            ELSEIF (CntrPar%DAC_Mode == 2) THEN
                 DO K = 1,LocalVar%NumBl
-                    ! Find flap angle command - includes an integral term to encourage zero flap angle
-                    LocalVar%Flp_Angle(K) = PIIController(-LocalVar%rootMOOPF(K), 0 - LocalVar%Flp_Angle(K), CntrPar%Flp_Kp, CntrPar%Flp_Ki, REAL(0.05,DbKi), -CntrPar%Flp_MaxPit , CntrPar%Flp_MaxPit , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                    ! Find dac value command - includes an integral term to encourage zero dac value
+                    LocalVar%dac_param(K) = PIIController(-LocalVar%rootMOOPF(K), 0 - LocalVar%dac_param(K), CntrPar%DAC_Kp, CntrPar%DAC_Ki, REAL(0.05,DbKi), -CntrPar%dac_maxval , CntrPar%dac_maxval , LocalVar%DT, 0.0, LocalVar%piP, LocalVar%restart, objInst%instPI)
                     ! Saturation Limits
-                    LocalVar%Flp_Angle(K) = saturate(LocalVar%Flp_Angle(K), -CntrPar%Flp_MaxPit, CntrPar%Flp_MaxPit) * R2D
+                    LocalVar%dac_param(K) = saturate(LocalVar%dac_param(K), -CntrPar%dac_maxval, CntrPar%dac_maxval)
                 END DO
 
-            ! Cyclic flap Control
-            ELSEIF (CntrPar%Flp_Mode == 3) THEN
+            ! Cyclic DAC Control
+            ELSEIF (CntrPar%DAC_Mode == 3) THEN
                 ! Pass rootMOOPs through the Coleman transform to get the tilt and yaw moment axis
                 CALL ColemanTransform(LocalVar%rootMOOPF, LocalVar%Azimuth, NP_1, axisTilt_1P, axisYaw_1P)
 
                 ! Apply PI control
-                Flp_axisTilt_1P = PIController(axisTilt_1P, CntrPar%Flp_Kp, CntrPar%Flp_Ki, -CntrPar%Flp_MaxPit, CntrPar%Flp_MaxPit, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
-                Flp_axisYaw_1P = PIController(axisYaw_1P, CntrPar%Flp_Kp, CntrPar%Flp_Ki, -CntrPar%Flp_MaxPit, CntrPar%Flp_MaxPit, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                DAC_axisTilt_1P = PIController(axisTilt_1P, CntrPar%DAC_Kp, CntrPar%DAC_Ki, -CntrPar%dac_maxval, CntrPar%dac_maxval, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
+                DAC_axisYaw_1P = PIController(axisYaw_1P, CntrPar%DAC_Kp, CntrPar%DAC_Ki, -CntrPar%dac_maxval, CntrPar%dac_maxval, LocalVar%DT, 0.0_DbKi, LocalVar%piP, LocalVar%restart, objInst%instPI)
 
                 ! Pass direct and quadrature axis through the inverse Coleman transform to get the commanded pitch angles
-                CALL ColemanTransformInverse(Flp_axisTilt_1P, Flp_axisYaw_1P, LocalVar%Azimuth, NP_1, 0.0_DbKi, LocalVar%Flp_Angle)
+                CALL ColemanTransformInverse(DAC_axisTilt_1P, DAC_axisYaw_1P, LocalVar%Azimuth, NP_1, 0.0_DbKi, LocalVar%dac_param)
 
-            ! Bang-Bang flap control, root bending moment threshold, all flaps, no delays
-            ELSEIF (CntrPar%Flp_Mode == 4) THEN
+            ! Bang-Bang DAC control, root bending moment threshold, all DAC, no delays
+            ELSEIF (CntrPar%DAC_Mode == 4) THEN
               ! Check to see if
-              IF (LocalVar%Time >= CntrPar%flp_bb_startDelay) THEN
-                ! if using IDAC, call the bangbang subroutine to set the value of LocalVar%Flp_Angle for each blade
-                ! otherwise, call the bangbang subroutine for blade one, and set the other blades' LocalVar%Flp_Angle
+              IF (LocalVar%Time >= CntrPar%dac_bb_startDelay) THEN
+                ! if using IDAC, call the bangbang subroutine to set the value of LocalVar%dac_param for each blade
+                ! otherwise, call the bangbang subroutine for blade one, and set the other blades' LocalVar%dac_param
                 !   to the first blade's result.
-                !PRINT *, 'flp_bb_depTime is :', CntrPar%flp_bb_depTime  ! debug
-                IF (CntrPar%flp_bb_useIDAC > 0) THEN
+                IF (CntrPar%dac_bb_useIDAC > 0) THEN
                   DO K = 1, LocalVar%NumBl
                     CALL BangBang(CntrPar, LocalVar, K)
                   END DO
                 ELSE
-                  CALL BangBang(CntrPar, LocalVar, 1)
-                  LocalVar%Flp_Angle(2) = LocalVar%Flp_Angle(1)
-                  LocalVar%Flp_Angle(3) = LocalVar%Flp_Angle(1)
+                  CALL BangBang(CntrPar, LocalVar, 0)
+                  LocalVar%dac_param(2) = LocalVar%dac_param(1)
+                  LocalVar%dac_param(3) = LocalVar%dac_param(1)
                 END IF
-                ! Using a single root bending moment threshold to cycle flaps
-                !PRINT *, 'rootMOOPF: ', LocalVar%rootMOOPF ! debug
-                !Flp_UseTipDefl_Threshold_Flag = 0
-                !
-                ! Set up the signal to compare to the actuation threshold
-                !IF (Flp_UseTipDefl_Threshold_Flag > 0) THEN
-                !    !Flp_Signals2Compare2 = CntrPar%TipDyb !Gerrit, need to find out if/where tip defl is
-                !ELSE
-                !    Flp_Signals2Compare2 = LocalVar%rootMOOPF
-                !ENDIF
-                !
-                !IF (Flp_Signals2Compare2(1) >= CntrPar%flp_bb_threshold) THEN
-                !    !PRINT *, 'Flaps on at: ', LocalVar%Flp_Angle ! debug
-                !    !LocalVar%Flp_Angle(1) = CntrPar%Flp_MaxPit
-                !    !LocalVar%Flp_Angle(2) = CntrPar%Flp_MaxPit
-                !    !LocalVar%Flp_Angle(3) = CntrPar%Flp_MaxPit
-                !    LocalVar%Flp_Angle(1) = CntrPar%Flp_MaxPit
-                !    LocalVar%Flp_Angle(2) = CntrPar%Flp_MaxPit
-                !    LocalVar%Flp_Angle(3) = CntrPar%Flp_MaxPit
-                !ELSE
-                !    LocalVar%Flp_Angle(1) = 0
-                !    LocalVar%Flp_Angle(2) = 0
-                !    LocalVar%Flp_Angle(3) = 0
-                !ENDIF
               ENDIF
-            !ELSEIF (CntrPar%Flp_Mode == 5) THEN
-              !DO K = 1,LocalVar%NumBl
-
             ENDIF
 
             ! Send to AVRSwap
-            avrSWAP(120) = LocalVar%Flp_Angle(1)   ! Send flap pitch command (deg)
-            avrSWAP(121) = LocalVar%Flp_Angle(2)   ! Send flap pitch command (deg)
-            avrSWAP(122) = LocalVar%Flp_Angle(3)   ! Send flap pitch command (deg)
+            avrSWAP(120) = LocalVar%dac_param(1) !*R2D   ! Send DAC parameter command (units of DAC device)
+            avrSWAP(121) = LocalVar%dac_param(2) !*R2D   ! Send DAC parameter command (units of DAC device)
+            avrSWAP(122) = LocalVar%dac_param(3) !*R2D   ! Send DAC parameter command (units of DAC device)
             !PRINT *, 'avrSWAP vals =', avrSWAP(120), avrSWAP(121), avrSWAP(122)
         ELSE
             RETURN
         ENDIF
-    END SUBROUTINE FlapControl
+    END SUBROUTINE DACControl
 
     !-------------------------------------------------------------------------------------------------------------------------------
     SUBROUTINE BangBang(CntrPar, LocalVar, bladeNum)
-        ! Determines the DAC (flap) angle, to be called within FlapControl
+        ! Determines the DAC (flap) angle, to be called within DACControl
         !   - Built to accommodate up to 5 blades and allows for a minimum deployment duration
         !   INPUTS:
         !     - CntrPar: ROSCO_Type ControlParameters struct containing all of the control Parameters
         !     - LocalVar: ROSCO_Type LocalVariables struct containing all of the local variables
         !     - bladeNum: Integer that designates the blade number being considered (1:5)
         !   OUTPUTS:
-        !     - None, but it does modify a specific blades LocalVar%Flp_Angle value, with the
+        !     - None, but it does modify a specific blades LocalVar%dac_param value, with the
         !         specific blade determined by the value of the input variable bladeNum
         USE ROSCO_Types, ONLY : ControlParameters, LocalVariables
 
         !Input Variables
         TYPE(ControlParameters), INTENT(INOUT)    :: CntrPar
         TYPE(LocalVariables), INTENT(INOUT)       :: LocalVar
-        TYPE(INTEGER), INTENT(IN)                   :: bladeNum
+        TYPE(INTEGER), INTENT(IN)              :: bladeNum
 
         !Internal Variables
         REAL(DbKi)                        :: currentTime
-        REAL(DbKi)                        :: Flp_Signal2Compare2
+        REAL(DbKi)                        :: DAC_Signal2Compare2
+        REAL(DbKi)                        :: local_DAC_Maxval
         REAL(DbKi), DIMENSION(5), SAVE    :: lastActuationTime = (/ 0.0, 0.0, 0.0, 0.0, 0.0 /)
         LOGICAL, DIMENSION(5), SAVE       :: dacIsDeployed = (/ .FALSE., .FALSE., .FALSE., .FALSE., .FALSE. /)
         LOGICAL, DIMENSION(5), SAVE       :: dacNOTDeployed = (/ .TRUE., .TRUE., .TRUE., .TRUE., .TRUE. /)
@@ -653,62 +626,59 @@ CONTAINS
         LOGICAL                           :: belowThreshold
         LOGICAL                           :: time2Actuate = .FALSE.
         LOGICAL                           :: time2Deactuate = .FALSE.
-        INTEGER(IntKi)                    :: Flp_UseTipDefl_Threshold_Flag
+        INTEGER(IntKi)                    :: DAC_UseTipDefl_Threshold_Flag
+        INTEGER(IntKi)                    :: local_bladeNum
 
         !Begin the actual SUBROUTINE
 
         !Dummy variable until Gerrit can get it setup as a control param TO DO
-        Flp_UseTipDefl_Threshold_Flag = 0
+        DAC_UseTipDefl_Threshold_Flag = 0
 
         ! Set up the signal to compare to the actuation threshold
-        IF (Flp_UseTipDefl_Threshold_Flag > 0) THEN
-            !Flp_Signals2Compare2 = CntrPar%TipDyb !Gerrit, need to find out if/where tip defl is
+        IF (DAC_UseTipDefl_Threshold_Flag > 0) THEN
+            !DAC_Signals2Compare2 = CntrPar%TipDyb !Gerrit, need to find out if/where tip defl is
         ELSE
-            Flp_Signal2Compare2 = LocalVar%rootMOOPF(bladeNum)
+            ! If bladeNum is set to 0, then group control is active, and an average of the root bending moments is used as the measurement
+            IF (bladeNum == 0) THEN
+                DAC_Signal2Compare2 = MAXVAL(LocalVar%rootMOOPF)
+                local_bladeNum = 1 ! Set bladeNum to 1 in order to get the logical variables to work below
+            ELSE
+                DAC_Signal2Compare2 = LocalVar%rootMOOPF(bladeNum)
+                local_bladeNum = bladeNum
+            ENDIF
+        ENDIF
+
+        ! Determine what the local_DAC_MaxVal should be based on the DAC_Model flag
+        IF (CntrPar%DAC_Model == 1) THEN
+            local_DAC_MaxVal = -CntrPar%dac_maxval
+        ELSE
+            local_DAC_MaxVal = CntrPar%dac_maxval
         ENDIF
 
         !Grab the current sim time
         currentTime = LocalVar%Time
 
         !Determine logical variables and do some error checking
-        thresholdExceeded = (Flp_Signal2Compare2 > CntrPar%flp_bb_threshold)
+        thresholdExceeded = (DAC_Signal2Compare2 > CntrPar%dac_bb_threshold)
         belowThreshold = .NOT. thresholdExceeded
         dacNOTDeployed = .NOT. dacIsDeployed
-        deploymentTimeElapsed = (currentTime > (lastActuationTime(bladeNum) + CntrPar%flp_bb_depTime))
-        time2Deactuate = (deploymentTimeElapsed) .AND. (belowThreshold) .AND. (dacIsDeployed(bladeNum))
-        time2Actuate = (thresholdExceeded) .AND. (dacNOTDeployed(bladeNum))
-
-        !Debug
-        !IF (dacIsDeployed(bladeNum)) THEN
-        !  PRINT *, '********************* NEW CALL *********************'
-        !  PRINT *, 'currentTime =', currentTime
-        !  PRINT *, 'Flp_Signal2Compare2 =', Flp_Signal2Compare2
-        !  PRINT *, 'flp_bb_threshold =', CntrPar%flp_bb_threshold
-        !  PRINT *, 'thresholdExceeded =', thresholdExceeded
-        !  PRINT *, 'belowThreshold =', belowThreshold
-        !  PRINT *, 'dacNOTDeployed =', dacNOTDeployed(bladeNum)
-        !  PRINT *, 'lastActuationTime =', lastActuationTime(bladeNum)
-        !  PRINT *, 'flp_bb_depTime =', CntrPar%flp_bb_depTime
-        !  PRINT *, 'deploymentTimeElapsed =', deploymentTimeElapsed
-        !  PRINT *, 'time2Deactuate =', time2Deactuate
-        !  PRINT *, 'time2Actuate =', time2Actuate
-        !ENDIF
-
+        deploymentTimeElapsed = (currentTime > (lastActuationTime(local_bladeNum) + CntrPar%dac_bb_depTime))
+        time2Deactuate = (deploymentTimeElapsed) .AND. (belowThreshold) .AND. (dacIsDeployed(local_bladeNum))
+        time2Actuate = (thresholdExceeded) .AND. (dacNOTDeployed(local_bladeNum))
 
         !Using the simplified logicals, actuate or deactuate the DACS
         IF (time2Actuate) THEN
-          LocalVar%Flp_Angle(bladeNum) = CntrPar%Flp_MaxPit
-          dacIsDeployed(bladeNum) = .TRUE.
-          lastActuationTime(bladeNum) = currentTime
+          LocalVar%dac_param(local_bladeNum) = local_DAC_MaxVal
+          dacIsDeployed(local_bladeNum) = .TRUE.
+          lastActuationTime(local_bladeNum) = currentTime
         ELSEIF (time2Deactuate) THEN
-          LocalVar%Flp_Angle(bladeNum) = 0
-          dacIsDeployed(bladeNum) = .FALSE.
+          LocalVar%dac_param(local_bladeNum) = 0
+          dacIsDeployed(local_bladeNum) = .FALSE.
         ELSE
-          LocalVar%Flp_Angle(bladeNum) = LocalVar%Flp_Angle(bladeNum)
-        !  dacIsDeployed(bladeNum) = .FALSE.
+          LocalVar%dac_param(local_bladeNum) = LocalVar%dac_param(local_bladeNum)
+        !  dacIsDeployed(local_bladeNum) = .FALSE.
         ENDIF
 
     END SUBROUTINE BangBang
-
 
 END MODULE Controllers
