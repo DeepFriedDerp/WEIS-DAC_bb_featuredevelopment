@@ -359,7 +359,10 @@ class RunXFOIL(ExplicitComponent):
                         for ind, fa in enumerate(dac_param):
                             # NOTE: negative flap angles are deflected to the suction side, i.e. positively along the positive z- (radial) axis
                             af_dac = CCAirfoil(np.array([1,2,3]), np.array([100]), np.zeros(3), np.zeros(3), np.zeros(3), inputs['coord_xy_interp'][i,:,0], inputs['coord_xy_interp'][i,:,1], "Profile"+str(i)) # bem:I am creating an airfoil name based on index...this structure/naming convention is being assumed in CCAirfoil.runXfoil() via the naming convention used in CCAirfoil.af_dac_coords(). Note that all of the inputs besides profile coordinates and name are just dummy varaiables at this point.
-                            af_dac.af_dac_coords(self.xfoil_path, fa* 180. / np.pi,  inputs['chord_start'][k],0.5,200, **xfoil_kw) #bem: the last number is the number of points in the profile.  It is currently being hard coded at 200 but should be changed to make sure it is the same number of points as the other profiles
+                            if self.dac_model == 1:
+                                af_dac.af_dac_coords(self.xfoil_path, fa* 180. / np.pi,  inputs['chord_start'][k],0.5,200, **xfoil_kw) #bem: the last number is the number of points in the profile.  It is currently being hard coded at 200 but should be changed to make sure it is the same number of points as the other profiles
+                            else:
+                                af_dac.af_dac_coords_lems(inputs['coord_xy_interp'][i,:,0], inputs['coord_xy_interp'][i,:,1]) # Just passing zeros...doesn't matter for generic dac model
                             # self.flap_profiles[i]['coords'][:,0,ind] = af_flap.af_flap_xcoords # x-coords from xfoil file with flaps
                             # self.flap_profiles[i]['coords'][:,1,ind] = af_flap.af_flap_ycoords # y-coords from xfoil file with flaps
                             # self.flap_profiles[i]['coords'][:,0,ind] = af_flap.af_flap_xcoords  # x-coords from xfoil file with flaps and NO gaussian filter for smoothing
