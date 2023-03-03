@@ -453,6 +453,12 @@ class CCAirfoil(object):
         if os.path.exists(NUL_fname):
             os.remove(NUL_fname)
 
+    def af_dac_coords_lems(
+        self, dac_coords_x,dac_coords_y
+    ):
+        self.af_dac_xcoords = dac_coords_x
+        self.af_dac_ycoords = dac_coords_y
+
 
 # ------------------
 #  Main Class: CCBlade
