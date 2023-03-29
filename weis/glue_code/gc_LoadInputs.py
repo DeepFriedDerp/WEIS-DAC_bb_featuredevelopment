@@ -130,7 +130,7 @@ class WindTurbineOntologyPythonWEIS(WindTurbineOntologyPython):
                                                   self.modeling_options['Level3']['flag'])
         
         # XFoil
-        if not osp.isfile(self.modeling_options['Level3']["xfoil"]["path"]) and self.modeling_options['ROSCO']['DAC_Mode']:
+        if not osp.isfile(self.modeling_options['Level3']["xfoil"]["path"]) and self.modeling_options['ROSCO']['DAC_Model'] == 1:
             raise Exception("A distributed aerodynamic control device is defined in the geometry yaml, but the path to XFoil in the modeling options is not defined correctly")
 
         # Compute the number of DLCs that will be run
