@@ -75,7 +75,7 @@ ROSCO:
     F_NotchType: 0
     Fl_Mode: 0
     DAC_Mode: 4                 # Control mode for DAC devices (0 - No DAC control, 1 - Constant DAC parameter, 2 - PI DAC Control, 3 - Cyclic (1P) DAC control, 4 - Bang-Bang DAC control)
-    DAC_Model: 2                # This chooses whether to use xfoil for flaps (DAC_Model = 1) or general dac model (for instance for LEMS, DAC_Model = 2)
+    DAC_Model: 1                # This chooses whether to use xfoil for flaps (DAC_Model = 1) or general dac model (for instance for LEMS, DAC_Model = 2)
     dac_bb_threshold: 19000000 # Root bending moment threshold for actuation of DAC devices. For the current DLC driver settings, will initiate several deployments of the flaps in bang-bang control mode
     #dac_bb_startDelay: 1       # Sets a delay time (s) in the sim before the bang-bang controller begins running, defaults to 0 if not specified
     #dac_bb_depTime: 1          # Sets a minimum deployment time for the flaps (once deployed) in bang-bang control mode. Defaults to 0 if not specified
