@@ -23,7 +23,9 @@ develop-eggs
 .installed.cfg
 
 # Output files
+
 outputs/
+*.bl
 *.out
 
 # Sphinx
@@ -116,6 +118,8 @@ Thumbs.db
 *temp*
 
 outputs/
+dac_outputs/
+reports/
 results/
 
 # Turbsim
