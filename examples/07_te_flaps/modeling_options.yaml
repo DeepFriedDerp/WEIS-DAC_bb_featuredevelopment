@@ -64,7 +64,7 @@ Level3: # Options for WEIS fidelity level 3 = nonlinear time domain
         AfCmode: 5
 
     xfoil:
-        path: /home/mertzb/Xfoil/bin/xfoil  # Will need to set this to the user's specific path to xfoil
+        path: /Users/agmotes/home/codes/bin/xfoil  # Will need to set this to the user's specific path to xfoil
 
 ROSCO:
     flag: False

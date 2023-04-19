@@ -376,23 +376,23 @@ class LoadsAnalysis:
         DELs = {}
         D = {}
 
-        # This try-except block tests for a common missing value for fatparams.lifetime, which 
-        #   doesn't (and shouldn't) necessarily negate the results for DEL. This allows for the user
-        #   to be aware that D is affected and why, and for pCrunch to still produce results for DEL
-        try:
-
-            dummyVar = fatparams.lifetime
-
-        except AttributeError:
-
-            print(f"WARNING: fatparams parameter 'lifetime' does not exist, setting ")
-            print(f"    fatparams.lifetime to 0.0This will affect the result for D ")
-            print(f"    (Palmgren/Miner damage using stress) and may make the result ")
-            print(f"    for D non-physical")
-
-            fatparams.lifetime = 0.0
-
         for chan, fatparams in self._fc.items():
+
+            # This try-except block tests for a common missing value for fatparams.lifetime, which 
+            #   doesn't (and shouldn't) necessarily negate the results for DEL. This allows for the user
+            #   to be aware that D is affected and why, and for pCrunch to still produce results for DEL
+            try:
+
+                dummyVar = fatparams.lifetime
+
+            except AttributeError:
+
+                print(f"WARNING: fatparams parameter 'lifetime' does not exist, setting ")
+                print(f"    fatparams.lifetime to 0.0This will affect the result for D ")
+                print(f"    (Palmgren/Miner damage using stress) and may make the result ")
+                print(f"    for D non-physical")
+
+                fatparams.lifetime = 0.0
 
             try:
 
